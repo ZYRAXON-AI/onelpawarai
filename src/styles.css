@@ -61,6 +61,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-overlay: var(--overlay);
 }
 
 :root {
@@ -84,6 +85,7 @@
   --border: oklch(0.205 0.009 265 / 10%);
   --input: oklch(0.205 0.009 265 / 12%);
   --ring: oklch(0.58 0.225 260);
+  --overlay: oklch(0.12 0.015 260 / 68%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -153,15 +155,25 @@
 }
 
 @utility glass-panel {
-  background: color-mix(in oklab, var(--background) 88%, transparent);
+  background: color-mix(in oklab, var(--background) 78%, transparent);
   backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(22px) saturate(150%);
 }
 
 @utility glass-card {
-  background: color-mix(in oklab, var(--background) 62%, transparent);
+  background: color-mix(in oklab, var(--background) 78%, transparent);
   backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(22px) saturate(150%);
+}
+
+@utility background-veil {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--background) 8%, transparent), color-mix(in oklab, var(--background) 58%, transparent) 44%, color-mix(in oklab, var(--background) 78%, transparent));
+}
+
+@utility admin-surface {
+  background: color-mix(in oklab, var(--background) 96%, transparent);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
 }
 
 @utility ambient-light {

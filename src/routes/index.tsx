@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Menu } from "lucide-react";
+import { FounderAdminPanel } from "../components/founder-admin-panel";
 import founderPortrait from "../assets/founder-silhouette.jpg";
 import cloudDashboard from "../assets/zyraxon-cloud-dashboard.jpg";
+import headquarters from "../assets/premium-ai-headquarters.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +41,8 @@ function ExternalArrow() {
 function Index() {
   return (
     <div className="site-shell relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div aria-hidden="true" className="ambient-light absolute inset-0" />
+      <div aria-hidden="true" className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${headquarters})` }} />
+      <div aria-hidden="true" className="background-veil fixed inset-0 z-0" />
       <div aria-hidden="true" className="sweep-line sweep-a absolute inset-x-0 top-[12%] h-px opacity-40" />
       <div aria-hidden="true" className="sweep-line sweep-b absolute inset-x-0 top-[42%] h-px opacity-30" />
       <div aria-hidden="true" className="sweep-line sweep-c absolute inset-x-0 top-[70%] h-px opacity-25" />
@@ -129,7 +132,7 @@ function Index() {
           <div className="glass-card mx-auto max-w-[70ch] rounded-[20px] px-6 py-10 text-center ring-1 ring-border/70 md:px-8">
             <p className="section-kicker">The vision</p>
             <p className="mt-4 font-display text-2xl font-semibold leading-tight md:text-3xl">We build autonomous systems the way a single mind thinks—deliberately, precisely, and always connected.</p>
-            <p className="mt-5 text-sm leading-6 text-muted-foreground">একটি লক্ষ্য, একটি সংযুক্ত ইকোসিস্টেম—যেখানে AI সৃষ্টি, কাজ এবং কোডিংকে একসঙ্গে এগিয়ে নেয়।</p>
+            <p className="mt-5 text-sm leading-6 text-muted-foreground">One vision and one connected ecosystem—uniting intelligent creation, action, and code.</p>
           </div>
         </section>
 
@@ -142,8 +145,13 @@ function Index() {
       </main>
 
       <footer className="glass-panel relative z-10 border-t border-border/70">
-        <div className="mx-auto flex min-h-16 max-w-[1320px] flex-col justify-between gap-2 px-5 py-4 text-sm text-muted-foreground sm:flex-row sm:items-center md:px-6"><span>© 2026 OneL Pawar AI</span><span>One operator · four systems · one vision</span></div>
+        <div className="mx-auto grid max-w-[1320px] gap-5 px-5 py-8 text-sm text-muted-foreground sm:grid-cols-3 sm:items-end md:px-6">
+          <div><p className="font-display font-semibold text-foreground">OneL Pawar AI</p><p className="mt-1">Independent AI research and product organization.</p></div>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 sm:justify-center"><a href={products.cloud} target="_blank" rel="noreferrer" className="hover:text-foreground">Cloud Agent</a><a href={products.hub} target="_blank" rel="noreferrer" className="hover:text-foreground">Downloads</a><a href={products.organization} target="_blank" rel="noreferrer" className="hover:text-foreground">GitHub</a></div>
+          <div className="sm:text-right"><p>© 2026 OneL Pawar AI</p><p className="mt-1">All rights reserved.</p></div>
+        </div>
       </footer>
+      <FounderAdminPanel />
     </div>
   );
 }
