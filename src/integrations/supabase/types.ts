@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      founder_updates: {
+        Row: {
+          content: string
+          created_at: string
+          file_name: string | null
+          file_path: string | null
+          id: string
+          link_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          file_name?: string | null
+          file_path?: string | null
+          id?: string
+          link_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          file_name?: string | null
+          file_path?: string | null
+          id?: string
+          link_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
