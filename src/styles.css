@@ -167,7 +167,7 @@
 }
 
 @utility background-veil {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--background) 20%, transparent), color-mix(in oklab, var(--background) 72%, transparent) 42%, color-mix(in oklab, var(--background) 86%, transparent));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--background) 8%, transparent), color-mix(in oklab, var(--background) 58%, transparent) 44%, color-mix(in oklab, var(--background) 78%, transparent));
 }
 
 @utility admin-surface {

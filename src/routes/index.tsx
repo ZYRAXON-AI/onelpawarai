@@ -41,8 +41,8 @@ function ExternalArrow() {
 function Index() {
   return (
     <div className="site-shell relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div aria-hidden="true" className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${headquarters})` }} />
-      <div aria-hidden="true" className="background-veil fixed inset-0 -z-10" />
+      <div aria-hidden="true" className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${headquarters})` }} />
+      <div aria-hidden="true" className="background-veil fixed inset-0 z-0" />
       <div aria-hidden="true" className="sweep-line sweep-a absolute inset-x-0 top-[12%] h-px opacity-40" />
       <div aria-hidden="true" className="sweep-line sweep-b absolute inset-x-0 top-[42%] h-px opacity-30" />
       <div aria-hidden="true" className="sweep-line sweep-c absolute inset-x-0 top-[70%] h-px opacity-25" />
