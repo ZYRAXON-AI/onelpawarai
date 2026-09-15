@@ -62,11 +62,12 @@ export function FounderAdminPanel() {
 
   async function handleSave(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setBusy(true);
     setError("");
     try {
-      await save({ data: new FormData(event.currentTarget) });
-      event.currentTarget.reset();
+      await save({ data: new FormData(form) });
+      form.reset();
       const state = await loadState();
       setUpdates(state.updates as SavedUpdate[]);
     } catch (caught) {
