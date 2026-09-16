@@ -1,11 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Menu } from "lucide-react";
 import { FounderAdminPanel } from "../components/founder-admin-panel";
+import { FounderUpdates, type PublicUpdate } from "../components/founder-updates";
+import { getPublicFounderUpdates } from "@/lib/founder-admin.functions";
 import founderPortrait from "../assets/founder-silhouette.jpg";
 import cloudDashboard from "../assets/zyraxon-cloud-dashboard.jpg";
 import headquarters from "../assets/premium-ai-headquarters.jpg";
+import brandMark from "../assets/onel-pawar-ai-mark.png";
 
 export const Route = createFileRoute("/")({
+  loader: () => getPublicFounderUpdates(),
   head: () => ({
     meta: [
       { title: "OneL Pawar AI | Founder & AI Architect" },
@@ -20,9 +24,14 @@ export const Route = createFileRoute("/")({
         content: "One founder. A connected ecosystem of cloud, desktop, mobile, and coding AI systems.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://zyraxon-uni-agent.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://zyraxon-uni-agent.lovable.app/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "OneL Pawar AI", url: "https://zyraxon-uni-agent.lovable.app/", founder: { "@type": "Person", name: "OneL Pawar", jobTitle: "Founder & Chief Architect" }, sameAs: [products.organization, products.cloud] }) }],
   }),
+  errorComponent: () => <div className="grid min-h-screen place-items-center bg-background p-6 text-center"><div><h1 className="font-display text-2xl font-semibold">OneL Pawar AI</h1><p className="mt-2 text-muted-foreground">The website is temporarily unavailable. Please try again shortly.</p></div></div>,
+  notFoundComponent: () => <div className="grid min-h-screen place-items-center bg-background p-6 text-center"><div><h1 className="font-display text-2xl font-semibold">Page not found</h1><a className="mt-4 inline-block text-primary" href="/">Return home</a></div></div>,
   component: Index,
 });
 
@@ -39,6 +48,7 @@ function ExternalArrow() {
 }
 
 function Index() {
+  const updates = Route.useLoaderData() as PublicUpdate[];
   return (
     <div className="site-shell relative min-h-screen overflow-hidden bg-background text-foreground">
       <div aria-hidden="true" className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${headquarters})` }} />
@@ -50,13 +60,14 @@ function Index() {
       <header className="glass-panel sticky top-0 z-50 border-b border-border/70">
         <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-5 md:px-6">
           <a href="#founder" className="flex items-center gap-2.5" aria-label="OneL Pawar AI home">
-            <span className="grid size-7 place-items-center rounded-md bg-primary font-display text-[13px] font-semibold text-primary-foreground">1</span>
+             <img src={brandMark} alt="OneL Pawar AI logo" width={1024} height={1024} className="size-9 object-contain" />
             <span className="font-display text-[15px] font-semibold">OneL Pawar AI</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex" aria-label="Primary navigation">
             <a className="line-sweep transition-colors hover:text-foreground" href="#founder">Founder</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#ecosystem">Ecosystem</a>
-            <a className="line-sweep transition-colors hover:text-foreground" href="#vision">Vision</a>
+             <a className="line-sweep transition-colors hover:text-foreground" href="#updates">Updates</a>
+             <a className="line-sweep transition-colors hover:text-foreground" href="#vision">Vision</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#github">GitHub</a>
           </nav>
           <a href="#ecosystem" className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-flex">Explore products</a>
@@ -127,6 +138,8 @@ function Index() {
             </a>
           </div>
         </section>
+
+        <FounderUpdates updates={updates} />
 
         <section id="vision" className="scroll-mt-20 py-12">
           <div className="glass-card mx-auto max-w-[70ch] rounded-[20px] px-6 py-10 text-center ring-1 ring-border/70 md:px-8">
