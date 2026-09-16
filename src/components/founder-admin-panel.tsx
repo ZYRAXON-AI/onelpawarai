@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { FileText, Image, Link2, Lock, LogOut, Trash2, Upload, Video, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,17 @@ export function FounderAdminPanel() {
   const [updates, setUpdates] = useState<SavedUpdate[]>([]);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState<{ url: string; type: string; name: string } | null>(null);
+
+  useEffect(() => () => {
+    if (preview) URL.revokeObjectURL(preview.url);
+  }, [preview]);
+
+  function selectFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0];
+    if (preview) URL.revokeObjectURL(preview.url);
+    setPreview(file ? { url: URL.createObjectURL(file), type: file.type, name: file.name } : null);
+  }
 
   async function openPanel() {
     setOpen(true);
@@ -75,6 +86,7 @@ export function FounderAdminPanel() {
     try {
       await save({ data: new FormData(form) });
       form.reset();
+      setPreview(null);
       const state = await loadState();
       setUpdates(state.updates as SavedUpdate[]);
     } catch (caught) {
@@ -135,7 +147,10 @@ export function FounderAdminPanel() {
                   <div><label className="text-sm font-medium" htmlFor="update-title">Title</label><input id="update-title" name="title" required maxLength={160} className="mt-2 h-11 w-full rounded-lg border border-input bg-background px-3 outline-none focus:ring-2 focus:ring-ring" /></div>
                   <div><label className="text-sm font-medium" htmlFor="update-content">Information</label><textarea id="update-content" name="content" required maxLength={10000} rows={6} className="mt-2 w-full resize-y rounded-lg border border-input bg-background p-3 outline-none focus:ring-2 focus:ring-ring" /></div>
                   <div><label className="text-sm font-medium" htmlFor="update-link">Reference link <span className="text-muted-foreground">(optional)</span></label><input id="update-link" name="linkUrl" type="url" placeholder="https://" className="mt-2 h-11 w-full rounded-lg border border-input bg-background px-3 outline-none focus:ring-2 focus:ring-ring" /></div>
-                   <label className="mt-4 flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary"><Upload className="size-4 text-primary" /><span>Image, video, audio, document or file · up to 100 MB</span><input name="file" type="file" className="sr-only" /></label>
+                    <label className="mt-4 flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary"><Upload className="size-4 text-primary" /><span>{preview?.name ?? "Image, video, audio, document or file · up to 100 MB"}</span><input name="file" type="file" className="sr-only" onChange={selectFile} /></label>
+                   {preview?.type.startsWith("image/") && <img src={preview.url} alt="Selected upload preview" className="mt-3 aspect-video w-full rounded-lg object-cover ring-1 ring-border" />}
+                   {preview?.type.startsWith("video/") && <video src={preview.url} controls className="mt-3 aspect-video w-full rounded-lg bg-foreground object-cover" aria-label="Selected video preview" />}
+                   {preview?.type.startsWith("audio/") && <audio src={preview.url} controls className="mt-3 w-full" />}
                    <label className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-background/70 p-3 text-sm font-medium"><span>Publish on the website now</span><input name="isPublished" type="checkbox" defaultChecked className="size-4 accent-primary" /></label>
                   {error && <p className="text-sm text-destructive">{error}</p>}
                    <Button disabled={busy} type="submit" className="mt-4 h-11 w-full">{busy ? "Saving…" : "Publish to website"}</Button>

@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://zyraxon-uni-agent.lovable.app/sitemap.xml
+Sitemap: https://onelpawarai.lovable.app/sitemap.xml
