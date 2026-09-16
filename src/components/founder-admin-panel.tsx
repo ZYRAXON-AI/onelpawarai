@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { FileText, Lock, LogOut, Upload, X } from "lucide-react";
+import { FileText, Image, Link2, Lock, LogOut, Trash2, Upload, Video, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import adminBackground from "@/assets/premium-ai-headquarters.jpg";
 import {
+  deleteFounderUpdate,
   getFounderAdminState,
   lockFounderAdmin,
   saveFounderUpdate,
@@ -14,6 +17,9 @@ type SavedUpdate = {
   content: string;
   link_url: string | null;
   file_name: string | null;
+  file_size: number | null;
+  media_type: string | null;
+  is_published: boolean;
   created_at: string;
 };
 
@@ -22,11 +28,23 @@ export function FounderAdminPanel() {
   const loadState = useServerFn(getFounderAdminState);
   const save = useServerFn(saveFounderUpdate);
   const lock = useServerFn(lockFounderAdmin);
+  const remove = useServerFn(deleteFounderUpdate);
   const [open, setOpen] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [updates, setUpdates] = useState<SavedUpdate[]>([]);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [preview, setPreview] = useState<{ url: string; type: string; name: string } | null>(null);
+
+  useEffect(() => () => {
+    if (preview) URL.revokeObjectURL(preview.url);
+  }, [preview]);
+
+  function selectFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0];
+    if (preview) URL.revokeObjectURL(preview.url);
+    setPreview(file ? { url: URL.createObjectURL(file), type: file.type, name: file.name } : null);
+  }
 
   async function openPanel() {
     setOpen(true);
@@ -68,6 +86,7 @@ export function FounderAdminPanel() {
     try {
       await save({ data: new FormData(form) });
       form.reset();
+      setPreview(null);
       const state = await loadState();
       setUpdates(state.updates as SavedUpdate[]);
     } catch (caught) {
@@ -84,15 +103,32 @@ export function FounderAdminPanel() {
     setOpen(false);
   }
 
+  async function handleDelete(id: string) {
+    if (!window.confirm("Delete this update and its uploaded file?")) return;
+    setBusy(true);
+    setError("");
+    try {
+      await remove({ data: { id } });
+      const state = await loadState();
+      setUpdates(state.updates as SavedUpdate[]);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "The update could not be deleted.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <>
-      <button type="button" onClick={openPanel} className="secret-trigger fixed bottom-5 right-5 z-50 grid size-11 place-items-center rounded-full bg-foreground font-display font-semibold text-background shadow-xl transition-transform hover:scale-105" aria-label="Open private founder panel" title="Private founder panel">Z</button>
+      <Button type="button" onClick={openPanel} className="secret-trigger fixed bottom-5 right-5 z-50 size-11 rounded-full bg-foreground p-0 font-display font-semibold text-background shadow-xl transition-transform hover:scale-105 hover:bg-foreground" aria-label="Open private founder panel" title="Private founder panel">Z</Button>
       {open && (
         <div className="fixed inset-0 z-[60] grid place-items-center bg-overlay p-4" role="dialog" aria-modal="true" aria-label="Private founder panel">
-          <div className="admin-surface max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-xl border border-border p-5 shadow-2xl md:p-7">
+          <div className="admin-surface relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-xl border border-border shadow-2xl">
+            <img src={adminBackground} alt="" aria-hidden="true" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover opacity-20" />
+            <div className="relative max-h-[92vh] overflow-y-auto p-5 md:p-7">
             <div className="flex items-start justify-between gap-4 border-b border-border pb-5">
               <div><p className="section-kicker">Private workspace</p><h2 className="mt-2 font-display text-2xl font-semibold">Founder Control Room</h2></div>
-              <button type="button" onClick={() => setOpen(false)} className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground" aria-label="Close panel"><X className="size-4" /></button>
+              <Button type="button" variant="outline" size="icon" onClick={() => setOpen(false)} aria-label="Close panel"><X /></Button>
             </div>
 
             {!unlocked ? (
@@ -102,34 +138,40 @@ export function FounderAdminPanel() {
                 <label className="mt-6 block text-sm font-medium" htmlFor="admin-password">Password</label>
                 <input id="admin-password" name="password" type="password" required autoFocus autoComplete="current-password" className="mt-2 h-11 w-full rounded-lg border border-input bg-background px-3 outline-none focus:ring-2 focus:ring-ring" />
                 {error && <p className="mt-3 text-sm text-destructive">{error}</p>}
-                <button disabled={busy} type="submit" className="mt-5 h-11 w-full rounded-lg bg-primary font-medium text-primary-foreground disabled:opacity-50">{busy ? "Checking…" : "Enter control room"}</button>
+                 <Button disabled={busy} type="submit" className="mt-5 h-11 w-full">{busy ? "Checking…" : "Enter control room"}</Button>
               </form>
             ) : (
-              <div className="grid gap-7 py-6 lg:grid-cols-2">
-                <form onSubmit={handleSave} className="space-y-4">
+               <div className="grid gap-7 py-6 lg:grid-cols-[1fr_1.15fr]">
+                 <form onSubmit={handleSave} className="rounded-lg border border-border bg-background/75 p-5 backdrop-blur-xl">
+                   <div className="mb-5"><p className="section-kicker">Create & publish</p><h3 className="mt-2 font-display text-lg font-semibold">New website update</h3></div>
                   <div><label className="text-sm font-medium" htmlFor="update-title">Title</label><input id="update-title" name="title" required maxLength={160} className="mt-2 h-11 w-full rounded-lg border border-input bg-background px-3 outline-none focus:ring-2 focus:ring-ring" /></div>
                   <div><label className="text-sm font-medium" htmlFor="update-content">Information</label><textarea id="update-content" name="content" required maxLength={10000} rows={6} className="mt-2 w-full resize-y rounded-lg border border-input bg-background p-3 outline-none focus:ring-2 focus:ring-ring" /></div>
                   <div><label className="text-sm font-medium" htmlFor="update-link">Reference link <span className="text-muted-foreground">(optional)</span></label><input id="update-link" name="linkUrl" type="url" placeholder="https://" className="mt-2 h-11 w-full rounded-lg border border-input bg-background px-3 outline-none focus:ring-2 focus:ring-ring" /></div>
-                  <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary"><Upload className="size-4 text-primary" /><span>Attach a file, up to 20 MB</span><input name="file" type="file" className="sr-only" /></label>
+                    <label className="mt-4 flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-input p-4 text-sm text-muted-foreground hover:bg-secondary"><Upload className="size-4 text-primary" /><span>{preview?.name ?? "Image, video, audio, document or file · up to 100 MB"}</span><input name="file" type="file" className="sr-only" onChange={selectFile} /></label>
+                   {preview?.type.startsWith("image/") && <img src={preview.url} alt="Selected upload preview" className="mt-3 aspect-video w-full rounded-lg object-cover ring-1 ring-border" />}
+                   {preview?.type.startsWith("video/") && <video src={preview.url} controls className="mt-3 aspect-video w-full rounded-lg bg-foreground object-cover" aria-label="Selected video preview" />}
+                   {preview?.type.startsWith("audio/") && <audio src={preview.url} controls className="mt-3 w-full" />}
+                   <label className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-background/70 p-3 text-sm font-medium"><span>Publish on the website now</span><input name="isPublished" type="checkbox" defaultChecked className="size-4 accent-primary" /></label>
                   {error && <p className="text-sm text-destructive">{error}</p>}
-                  <button disabled={busy} type="submit" className="h-11 w-full rounded-lg bg-primary font-medium text-primary-foreground disabled:opacity-50">{busy ? "Saving…" : "Save to Cloud"}</button>
+                   <Button disabled={busy} type="submit" className="mt-4 h-11 w-full">{busy ? "Saving…" : "Publish to website"}</Button>
                 </form>
 
                 <div>
-                  <div className="flex items-center justify-between"><h3 className="font-display font-semibold">Saved information</h3><button type="button" onClick={handleLock} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"><LogOut className="size-4" /> Lock</button></div>
+                   <div className="flex items-center justify-between"><div><p className="section-kicker">Content library</p><h3 className="mt-2 font-display font-semibold">Saved information</h3></div><Button type="button" onClick={handleLock} size="sm" variant="ghost"><LogOut /> Lock</Button></div>
                   <div className="mt-4 space-y-3">
                     {updates.length === 0 && <p className="rounded-lg border border-border p-4 text-sm text-muted-foreground">Nothing has been saved yet.</p>}
                     {updates.map((item) => (
-                      <article key={item.id} className="rounded-lg border border-border bg-background/70 p-4">
-                        <div className="flex items-start justify-between gap-3"><h4 className="font-display font-semibold">{item.title}</h4><time className="shrink-0 text-xs text-muted-foreground">{new Date(item.created_at).toLocaleDateString("en-GB")}</time></div>
+                       <article key={item.id} className="rounded-lg border border-border bg-background/80 p-4 backdrop-blur-xl">
+                         <div className="flex items-start justify-between gap-3"><div><span className="text-[10px] font-semibold uppercase text-primary">{item.is_published ? "Published" : "Draft"}</span><h4 className="mt-1 font-display font-semibold">{item.title}</h4></div><time className="shrink-0 text-xs text-muted-foreground">{new Date(item.created_at).toLocaleDateString("en-GB")}</time></div>
                         <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-muted-foreground">{item.content}</p>
-                        <div className="mt-3 flex flex-wrap gap-3 text-xs text-primary">{item.link_url && <a href={item.link_url} target="_blank" rel="noreferrer">Open link</a>}{item.file_name && <span className="inline-flex items-center gap-1"><FileText className="size-3" />{item.file_name}</span>}</div>
+                         <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-primary">{item.link_url && <a className="inline-flex items-center gap-1" href={item.link_url} target="_blank" rel="noreferrer"><Link2 className="size-3" /> Open link</a>}{item.file_name && <span className="inline-flex items-center gap-1">{item.media_type === "image" ? <Image className="size-3" /> : item.media_type === "video" ? <Video className="size-3" /> : <FileText className="size-3" />}{item.file_name}</span>}<Button disabled={busy} type="button" variant="ghost" size="sm" className="ml-auto text-destructive hover:text-destructive" onClick={() => handleDelete(item.id)}><Trash2 /> Delete</Button></div>
                       </article>
                     ))}
                   </div>
                 </div>
-              </div>
+               </div>
             )}
+            </div>
           </div>
         </div>
       )}
