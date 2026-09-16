@@ -20,8 +20,11 @@ export type Database = {
           created_at: string
           file_name: string | null
           file_path: string | null
+          file_size: number | null
           id: string
+          is_published: boolean
           link_url: string | null
+          media_type: string | null
           title: string
           updated_at: string
         }
@@ -30,8 +33,11 @@ export type Database = {
           created_at?: string
           file_name?: string | null
           file_path?: string | null
+          file_size?: number | null
           id?: string
+          is_published?: boolean
           link_url?: string | null
+          media_type?: string | null
           title: string
           updated_at?: string
         }
@@ -40,8 +46,11 @@ export type Database = {
           created_at?: string
           file_name?: string | null
           file_path?: string | null
+          file_size?: number | null
           id?: string
+          is_published?: boolean
           link_url?: string | null
+          media_type?: string | null
           title?: string
           updated_at?: string
         }
