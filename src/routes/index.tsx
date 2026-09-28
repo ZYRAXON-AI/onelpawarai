@@ -66,7 +66,7 @@ export const Route = createFileRoute("/")({
 });
 
 const products = {
-  cloud: "https://zyraxon-pro.ai.studio/",
+  cloud: "https://zyraxon-pro-x.lovable.app/",
   hub: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   organization: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   agent: "https://github.com/onelpawarai-X/ZYRAXON-AI",
