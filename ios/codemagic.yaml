@@ -1,0 +1,34 @@
+# Cloud build of the iOS app - no Mac required.
+# Import this repo into Codemagic and it produces a signed .ipa for TestFlight.
+workflows:
+  ios-release:
+    name: iOS release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: ZyraxonAppStore
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: __BUNDLE_ID__
+      node: latest
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd ios
+          npm install
+      - name: Add and sync the iOS platform
+        script: |
+          cd ios
+          npx cap add ios || true
+          npx cap sync ios
+      - name: Set up code signing
+        script: |
+          cd ios/ios/App
+          xcode-project use-profiles
+      - name: Build the ipa
+        script: |
+          cd ios/ios/App
+          xcode-project build-ipa --project App.xcodeproj --scheme App
+    artifacts:
+      - ios/ios/App/build/ios/ipa/*.ipa

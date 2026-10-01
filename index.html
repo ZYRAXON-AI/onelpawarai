@@ -6,6 +6,12 @@
 <title>Aurora — Your AI Personal Finance Assistant</title>
 <meta name="description" content="Aurora is an AI personal finance assistant that tracks your spending, forecasts your runway and tells you exactly what to do next with your money." />
 <meta name="theme-color" content="#070b18" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Aurora" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Aurora — Your AI Personal Finance Assistant" />
@@ -396,5 +402,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
 </body>
 </html>
