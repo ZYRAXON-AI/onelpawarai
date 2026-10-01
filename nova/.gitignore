@@ -1,0 +1,11 @@
+# Build artefacts and editor noise
+.DS_Store
+Thumbs.db
+*.log
+
+# Node / tooling (this project needs none, but keep the tree clean)
+node_modules/
+
+# Local screenshots and Playwright output
+.playwright-mcp/
+*.png
