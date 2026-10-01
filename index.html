@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aurora — Your AI Personal Finance Assistant</title>
+<meta name="description" content="Aurora is an AI personal finance assistant that tracks your spending, forecasts your runway and tells you exactly what to do next with your money." />
+<meta name="theme-color" content="#070b18" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Aurora" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Aurora — Your AI Personal Finance Assistant" />
+<meta property="og:description" content="One assistant for your whole financial life. Forecasts, budgets and plain-English answers." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='55%25' stop-color='%23a855f7'/%3E%3Cstop offset='100%25' stop-color='%232dd4bf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M10 22V10l12 12V10' stroke='%23071020' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Ambient aurora backdrop -->
+<div class="aurora-field" aria-hidden="true">
+  <div class="aurora aurora--1"></div>
+  <div class="aurora aurora--2"></div>
+  <div class="aurora aurora--3"></div>
+  <div class="grid-lines"></div>
+</div>
+
+<a class="skip-link" href="#features">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="brand" href="#top" aria-label="Aurora home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32">
+          <defs>
+            <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="55%" stop-color="#a855f7" />
+              <stop offset="100%" stop-color="#2dd4bf" />
+            </linearGradient>
+          </defs>
+          <rect width="32" height="32" rx="9" fill="url(#brandGrad)" />
+          <path d="M10 22V10l12 12V10" stroke="#071020" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+      <span class="brand__name">Aurora</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/ZYRAXON-AI/onelpawarai" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="btn btn--sm btn--primary nav__cta" href="#pricing">Get started</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="shell hero__inner">
+      <p class="pill reveal">
+        <span class="pill__dot" aria-hidden="true"></span>
+        Aurora 2.0 is live — multi-currency forecasting
+      </p>
+
+      <h1 class="hero__title reveal">
+        Your money,<br />
+        <span class="gradient-text" id="typed" data-typed='["finally making sense.","on autopilot.","in plain English.","one calm place."]'></span><span class="caret" aria-hidden="true"></span>
+      </h1>
+
+      <p class="hero__sub reveal">
+        Aurora connects your accounts, learns how you actually spend, and tells you exactly what to do next —
+        without spreadsheets, jargon or judgement.
+      </p>
+
+      <div class="hero__actions reveal">
+        <a class="btn btn--primary" href="#pricing">Start for free</a>
+        <a class="btn btn--ghost" href="#features">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" /><path d="m10 8 6 4-6 4z" />
+          </svg>
+          See how it works
+        </a>
+      </div>
+
+      <p class="hero__meta reveal">No card required · Bank-grade 256-bit encryption · 2-minute setup</p>
+
+      <!-- Product preview card -->
+      <div class="console reveal" role="img" aria-label="Preview of the Aurora dashboard showing monthly balance, spending trend and an AI insight">
+        <div class="console__bar">
+          <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+          <span class="console__url">app.aurora.finance</span>
+        </div>
+        <div class="console__body">
+          <div class="stat">
+            <p class="stat__label">Safe to spend · October</p>
+            <p class="stat__value">$1,842<span class="stat__unit">.60</span></p>
+            <p class="stat__delta up">↗ 12.4% vs. last month</p>
+          </div>
+          <div class="chart" aria-hidden="true">
+            <svg viewBox="0 0 520 180" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.55" />
+                  <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#6366f1" />
+                  <stop offset="55%" stop-color="#a855f7" />
+                  <stop offset="100%" stop-color="#2dd4bf" />
+                </linearGradient>
+              </defs>
+              <path d="M0 150 C60 140 80 118 130 122 C185 126 200 92 255 96 C315 100 330 62 385 68 C440 74 470 40 520 34 L520 180 L0 180 Z" fill="url(#areaGrad)" />
+              <path d="M0 150 C60 140 80 118 130 122 C185 126 200 92 255 96 C315 100 330 62 385 68 C440 74 470 40 520 34" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="insight">
+            <span class="insight__badge">Aurora AI</span>
+            <p>You spent <strong>$312</strong> more on delivery this month. Shifting two orders a week to your grocery habit keeps you <strong>$96 ahead</strong> by the 14th.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted by -->
+  <section class="trusted reveal" aria-label="Companies that trust Aurora">
+    <div class="shell">
+      <p class="trusted__label">Trusted by finance teams at</p>
+      <div class="logo-strip">
+        <span class="logo">Northwind</span>
+        <span class="logo">Lumio</span>
+        <span class="logo">Vantage&nbsp;Bank</span>
+        <span class="logo">Helio</span>
+        <span class="logo">Cobalt</span>
+        <span class="logo">Meridian</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">Features</p>
+        <h2 class="section__title">Everything your money needs, in one assistant</h2>
+        <p class="section__sub">Aurora does the analysis, the maths and the nagging — quietly, in the background.</p>
+      </header>
+
+      <div class="grid grid--3">
+        <article class="card reveal">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l5-6 4 4 5-7 4 5" /><path d="M3 21h18" />
+            </svg>
+          </div>
+          <h3>Forecasted runway</h3>
+          <p>Aurora projects your balance to the end of the month and beyond, then shows the two or three decisions that actually change the outcome.</p>
+          <ul class="card__list">
+            <li>Daily projection, updated live</li>
+            <li>Scenario modelling for big purchases</li>
+            <li>Alerts before you ever go negative</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v18" /><path d="M5 8h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11" />
+            </svg>
+          </div>
+          <h3>Budgets that adapt</h3>
+          <p>No rigid caps that make you feel bad. Aurora learns your real rhythm and reshapes envelopes as your life changes.</p>
+          <ul class="card__list">
+            <li>Automatic category rebalancing</li>
+            <li>Shared budgets for households</li>
+            <li>Weekly summaries in plain words</li>
+          </ul>
+        </article>
+
+        <article class="card reveal">
+          <div class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="10" width="16" height="10" rx="2.5" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /><circle cx="12" cy="15" r="1.2" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <h3>Private by design</h3>
+          <p>Read-only connections, bank-grade encryption and zero data resale. If Aurora ever stops being useful, you can export everything in one click.</p>
+          <ul class="card__list">
+            <li>256-bit encryption, always on</li>
+            <li>Read-only bank access</li>
+            <li>One-click full export</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="section__title">Simple plans that scale with you</h2>
+        <p class="section__sub">Start free forever. Upgrade when Aurora starts paying for itself — it usually does in the first week.</p>
+      </header>
+
+      <div class="grid grid--3 pricing">
+        <article class="plan reveal">
+          <h3 class="plan__name">Free</h3>
+          <p class="plan__price">$0<span class="plan__unit">/month</span></p>
+          <p class="plan__blurb">For getting a clear picture of where your money goes.</p>
+          <a class="btn btn--ghost btn--block" href="#top">Get started</a>
+          <ul class="plan__features">
+            <li>1 connected account</li>
+            <li>Automatic categorisation</li>
+            <li>Monthly forecast</li>
+            <li>7-day transaction history</li>
+            <li class="muted">No card linking</li>
+          </ul>
+        </article>
+
+        <article class="plan plan--featured reveal">
+          <span class="plan__badge">Most popular</span>
+          <h3 class="plan__name">Pro</h3>
+          <p class="plan__price">$9<span class="plan__unit">/month</span></p>
+          <p class="plan__blurb">For people who want the assistant doing real work for them.</p>
+          <a class="btn btn--primary btn--block" href="#top">Start 14-day trial</a>
+          <ul class="plan__features">
+            <li>Up to 10 connected accounts</li>
+            <li>Daily runway forecasting</li>
+            <li>AI insights and recommendations</li>
+            <li>Card &amp; investment tracking</li>
+            <li>Unlimited history and exports</li>
+            <li>Scenario modelling</li>
+          </ul>
+        </article>
+
+        <article class="plan reveal">
+          <h3 class="plan__name">Team</h3>
+          <p class="plan__price">$24<span class="plan__unit">/user/month</span></p>
+          <p class="plan__blurb">For shared finances — households, freelancers and small teams. Billed per user.</p>
+          <a class="btn btn--ghost btn--block" href="#top">Talk to us</a>
+          <ul class="plan__features">
+            <li>Everything in Pro</li>
+            <li>Shared budgets and goals</li>
+            <li>Role-based permissions</li>
+            <li>Approval workflows</li>
+            <li>Priority support</li>
+            <li>SSO and audit log</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="pricing__note reveal">All prices in USD. Cancel any time — your data stays exportable forever.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="shell shell--narrow">
+      <header class="section__head reveal">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="section__title">Questions, answered</h2>
+        <p class="section__sub">Still curious? Ask us anything at <a href="#faq">hello@aurora.finance</a>.</p>
+      </header>
+
+      <div class="accordion reveal" id="accordion">
+        <div class="faq">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a1" id="q1">
+            <span>How does Aurora access my bank?</span>
+            <svg class="faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="faq__a" id="a1" role="region" aria-labelledby="q1">
+            <p>Through regulated, read-only connections. Aurora can see balances and transactions but can never move your money, open credit or change a setting at your bank. You can revoke access from inside the app at any time.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a2" id="q2">
+            <span>Will the AI give me financial advice?</span>
+            <svg class="faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="faq__a" id="a2" role="region" aria-labelledby="q2">
+            <p>Aurora explains and forecasts — it is not a regulated financial adviser. It shows you the trade-offs behind each decision so you stay in control. For regulated advice, talk to a licensed professional in your country.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a3" id="q3">
+            <span>What happens to my data?</span>
+            <svg class="faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="faq__a" id="a3" role="region" aria-labelledby="q3">
+            <p>It is encrypted in transit and at rest, never sold, and never used to train third-party models. You can export a full copy of everything — transactions, budgets and insights — as CSV or JSON whenever you want.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a4" id="q4">
+            <span>How long does setup actually take?</span>
+            <svg class="faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="faq__a" id="a4" role="region" aria-labelledby="q4">
+            <p>About two minutes. Connect an account, confirm a couple of details, and Aurora starts categorising immediately. Your first forecast is ready within an hour.</p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <button class="faq__q" type="button" aria-expanded="false" aria-controls="a5" id="q5">
+            <span>Can I cancel or change plans later?</span>
+            <svg class="faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+          </button>
+          <div class="faq__a" id="a5" role="region" aria-labelledby="q5">
+            <p>Anytime, from the billing page — no emails, no phone calls. Downgrades take effect at the end of the current period, and you keep every export tool available on the free plan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta reveal">
+    <div class="shell">
+      <div class="cta__panel">
+        <h2>Find out what your money can do</h2>
+        <p>Join 40,000+ people who stopped guessing and started planning. Free forever, no card needed.</p>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="#pricing">Create your account</a>
+          <a class="btn btn--ghost" href="https://github.com/ZYRAXON-AI/onelpawarai" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <a class="brand" href="#top" aria-label="Aurora home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28">
+            <defs>
+              <linearGradient id="footGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#6366f1" />
+                <stop offset="55%" stop-color="#a855f7" />
+                <stop offset="100%" stop-color="#2dd4bf" />
+              </linearGradient>
+            </defs>
+            <rect width="32" height="32" rx="9" fill="url(#footGrad)" />
+            <path d="M10 22V10l12 12V10" stroke="#071020" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="brand__name">Aurora</span>
+      </a>
+      <p>The calm, intelligent layer over your financial life.</p>
+    </div>
+
+    <nav class="footer__cols" aria-label="Footer">
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#top">About</a>
+        <a href="#top">Careers</a>
+        <a href="#top">Contact</a>
+      </div>
+      <div>
+        <h4>Open source</h4>
+        <a href="https://github.com/ZYRAXON-AI/onelpawarai" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/ZYRAXON-AI/onelpawarai/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+        <a href="https://github.com/ZYRAXON-AI/onelpawarai/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="shell footer__bar">
+    <p>© <span id="year">2026</span> Aurora Finance. Built with care.</p>
+    <p class="footer__legal"><a href="#top">Privacy</a> · <a href="#top">Terms</a> · <a href="#top">Security</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+</body>
+</html>
