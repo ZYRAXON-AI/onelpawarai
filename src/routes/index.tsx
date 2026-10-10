@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Github, Menu } from "lucide-react";
+import { ArrowUpRight, CircleAlert, Github, Mail, Menu } from "lucide-react";
 import { FounderAdminPanel } from "../components/founder-admin-panel";
 import { FounderUpdates, type PublicUpdate } from "../components/founder-updates";
 import { getPublicFounderUpdates } from "@/lib/founder-admin.functions";
@@ -70,6 +70,8 @@ const products = {
   hub: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   organization: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   agent: "https://github.com/onelpawarai-X/ZYRAXON-AI",
+  issues: "https://github.com/onelpawarai-X/ZYRAXON-AI/issues",
+  email: "mailto:sayidilxs@gmail.com",
 };
 
 function ExternalArrow() {
@@ -102,6 +104,7 @@ function Index() {
             <a className="line-sweep transition-colors hover:text-foreground" href="#updates">Updates</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#vision">Vision</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#github">GitHub</a>
+            <a className="line-sweep transition-colors hover:text-foreground" href="#contact">Contact</a>
           </nav>
           <a
             href="#ecosystem"
@@ -292,6 +295,58 @@ function Index() {
             </a>
           </div>
         </section>
+
+        <section id="contact" className="scroll-mt-20 pb-14">
+          <div className="mb-6">
+            <p className="section-kicker">Contact & support</p>
+            <h2 className="mt-2 font-display text-2xl font-semibold md:text-3xl">Reach the founder directly</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <a
+              href={products.issues}
+              target="_blank"
+              rel="noreferrer"
+              className="glass-card line-sweep flex flex-col justify-between rounded-[18px] p-6 ring-1 ring-border/70 transition-colors hover:bg-secondary/70 md:p-7"
+            >
+              <div className="flex items-center justify-between">
+                <div className="inline-flex size-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+                  <CircleAlert className="size-6" />
+                </div>
+                <ExternalArrow />
+              </div>
+              <div className="pt-6">
+                <h3 className="font-display text-xl font-semibold">Report an issue on GitHub</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  Found a bug or have a feature request? Open an issue on the Zyraxon AI repository and it lands directly in the project's tracker.
+                </p>
+              </div>
+              <div className="border-t border-border/70 pt-4 text-xs font-medium text-muted-foreground">
+                github.com/onelpawarai-X/ZYRAXON-AI/issues
+              </div>
+            </a>
+
+            <a
+              href={products.email}
+              className="glass-card line-sweep flex flex-col justify-between rounded-[18px] p-6 ring-1 ring-border/70 transition-colors hover:bg-secondary/70 md:p-7"
+            >
+              <div className="flex items-center justify-between">
+                <div className="inline-flex size-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+                  <Mail className="size-6" />
+                </div>
+                <ExternalArrow />
+              </div>
+              <div className="pt-6">
+                <h3 className="font-display text-xl font-semibold">Email the founder</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  For partnerships, press, or direct inquiries, write to OneL Pawar — every message reaches the founder's personal inbox.
+                </p>
+              </div>
+              <div className="border-t border-border/70 pt-4 text-xs font-medium text-muted-foreground">
+                sayidilxs@gmail.com
+              </div>
+            </a>
+          </div>
+        </section>
       </main>
 
       <footer className="glass-panel relative z-10 border-t border-border/70">
@@ -305,6 +360,8 @@ function Index() {
             <a href={products.hub} target="_blank" rel="noreferrer" className="hover:text-foreground">Zyraxon AI (GitHub)</a>
             <a href={products.agent} target="_blank" rel="noreferrer" className="hover:text-foreground">Zyraxon Agent</a>
             <a href={products.organization} target="_blank" rel="noreferrer" className="hover:text-foreground">GitHub</a>
+            <a href={products.issues} target="_blank" rel="noreferrer" className="hover:text-foreground">Report an issue</a>
+            <a href={products.email} className="hover:text-foreground">Email</a>
           </div>
           <div className="sm:text-right">
             <p>© 2026 OneL Pawar AI</p>
