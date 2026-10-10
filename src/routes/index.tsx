@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Github, Menu } from "lucide-react";
+import { ArrowUpRight, CircleAlert, Github, Mail, Menu } from "lucide-react";
 import { FounderAdminPanel } from "../components/founder-admin-panel";
 import { FounderUpdates, type PublicUpdate } from "../components/founder-updates";
 import { getPublicFounderUpdates } from "@/lib/founder-admin.functions";
@@ -70,6 +70,8 @@ const products = {
   hub: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   organization: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   agent: "https://github.com/onelpawarai-X/ZYRAXON-AI",
+  issues: "https://github.com/onelpawarai-X/ZYRAXON-AI/issues",
+  email: "mailto:sayidilxs@gmail.com",
 };
 
 function ExternalArrow() {
