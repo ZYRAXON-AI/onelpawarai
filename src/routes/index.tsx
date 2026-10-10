@@ -360,6 +360,8 @@ function Index() {
             <a href={products.hub} target="_blank" rel="noreferrer" className="hover:text-foreground">Zyraxon AI (GitHub)</a>
             <a href={products.agent} target="_blank" rel="noreferrer" className="hover:text-foreground">Zyraxon Agent</a>
             <a href={products.organization} target="_blank" rel="noreferrer" className="hover:text-foreground">GitHub</a>
+            <a href={products.issues} target="_blank" rel="noreferrer" className="hover:text-foreground">Report an issue</a>
+            <a href={products.email} className="hover:text-foreground">Email</a>
           </div>
           <div className="sm:text-right">
             <p>© 2026 OneL Pawar AI</p>
