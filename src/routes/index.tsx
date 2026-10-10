@@ -104,6 +104,7 @@ function Index() {
             <a className="line-sweep transition-colors hover:text-foreground" href="#updates">Updates</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#vision">Vision</a>
             <a className="line-sweep transition-colors hover:text-foreground" href="#github">GitHub</a>
+            <a className="line-sweep transition-colors hover:text-foreground" href="#contact">Contact</a>
           </nav>
           <a
             href="#ecosystem"
