@@ -71,7 +71,7 @@ const products = {
   organization: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   agent: "https://github.com/onelpawarai-X/ZYRAXON-AI",
   issues: "https://github.com/onelpawarai-X/ZYRAXON-AI/issues",
-  email: "mailto:sayidilxs@gmail.com",
+  email: "https://mail.google.com/mail/?view=cm&fs=1&to=sayidilxs@gmail.com",
 };
 
 function ExternalArrow() {
