@@ -1,9 +1,9 @@
 {
-  "name": "ci-demo-app",
-  "productName": "CI Demo App",
+  "name": "zyraxon-desktop-suite",
+  "productName": "ZYRAXON Desktop Suite",
   "version": "1.0.0",
   "main": "main.js",
-  "description": "CI Demo App — built by ZYRAXON-Pro",
+  "description": "ZYRAXON Desktop Suite — built by ZYRAXON-Pro",
   "author": {
     "name": "ZYRAXON-Pro",
     "email": "onlypowerai@zyraxon.lab"
