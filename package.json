@@ -1,9 +1,9 @@
 {
-  "name": "zyraxon-desktop-suite",
-  "productName": "ZYRAXON Desktop Suite",
+  "name": "omg-app",
+  "productName": "OMG App",
   "version": "1.0.0",
   "main": "main.js",
-  "description": "ZYRAXON Desktop Suite — built by ZYRAXON-Pro",
+  "description": "OMG App — built by ZYRAXON-Pro",
   "author": {
     "name": "ZYRAXON-Pro",
     "email": "onlypowerai@zyraxon.lab"
