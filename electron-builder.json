@@ -1,0 +1,32 @@
+{
+  "appId": "com.zyraxon.cidemoapp",
+  "productName": "CI Demo App",
+  "directories": {
+    "output": "dist",
+    "app": "."
+  },
+  "files": [
+    "main.js",
+    "web/**/*",
+    "package.json"
+  ],
+  "publish": null,
+  "win": {
+    "target": [
+      "nsis"
+    ]
+  },
+  "mac": {
+    "target": [
+      "dmg"
+    ],
+    "identity": null
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ],
+    "category": "Utility"
+  }
+}
