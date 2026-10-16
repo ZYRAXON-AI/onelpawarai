@@ -1,6 +1,6 @@
 {
-  "appId": "com.zyraxon.zyraxondesktopsuite",
-  "productName": "ZYRAXON Desktop Suite",
+  "appId": "com.zyraxon.omgapp",
+  "productName": "OMG App",
   "directories": {
     "output": "dist",
     "app": "."
@@ -15,5 +15,19 @@
     "target": [
       "nsis"
     ]
+  },
+  "mac": {
+    "target": [
+      "dmg"
+    ],
+    "identity": null
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ],
+    "category": "Utility",
+    "maintainer": "ZYRAXON-Pro <onlypowerai@zyraxon.lab>"
   }
 }
