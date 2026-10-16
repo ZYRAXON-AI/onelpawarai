@@ -4,5 +4,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "description": "CI Demo App — built by ZYRAXON-Pro",
-  "author": "ZYRAXON-Pro"
+  "author": {
+    "name": "ZYRAXON-Pro",
+    "email": "onlypowerai@zyraxon.lab"
+  },
+  "homepage": "https://zyraxon.lab"
 }
