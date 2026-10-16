@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZYRAXON-Pro — The Most Powerful Autonomous Cloud Builder</title>
+<meta name="description" content="ZYRAXON-Pro is the world's most powerful autonomous cloud builder agent. Built by Only Power AI in ZYRAXON Lab. Owned by OMG (Alex Deluar Husen Sayidi)." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #05060f; color: #e6e9f2; }
+  .display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+  .grad { background: linear-gradient(120deg, #6366f1 0%, #8b5cf6 30%, #ec4899 60%, #f59e0b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad-bg { background: linear-gradient(120deg, #6366f1 0%, #8b5cf6 30%, #ec4899 60%, #f59e0b 100%); }
+  .glow { box-shadow: 0 0 80px -20px rgba(139,92,246,.55), 0 0 40px -10px rgba(236,72,153,.35); }
+  .card { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(12px); }
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .stars span { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .6; animation: twinkle 4s infinite; }
+  @keyframes twinkle { 0%,100% { opacity: .2; } 50% { opacity: .9; } }
+  .hero-grid { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0); background-size: 40px 40px; }
+  .blob { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .45; animation: float 12s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,-60px); } }
+  .scan { position: relative; overflow: hidden; }
+  .scan::after { content: ""; position: absolute; top: -100%; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(139,92,246,.12), transparent); animation: scan 6s linear infinite; }
+  @keyframes scan { 0% { top: -40%; } 100% { top: 140%; } }
+  .btn-glow:hover { box-shadow: 0 0 30px -4px rgba(139,92,246,.8); }
+  .marquee { display: flex; gap: 3rem; animation: marq 40s linear infinite; }
+  @keyframes marq { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .ring { animation: spin 22s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .blob,.ring,.scan::after,.marquee { animation: none; } }
+</style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden">
+  <div class="stars" id="stars"></div>
+
+  <!-- NAV -->
+  <header class="relative z-20 border-b border-white/5 bg-black/30 backdrop-blur-xl">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl grad-bg flex items-center justify-center font-black text-white text-lg display glow">Z</div>
+        <span class="display font-bold text-xl tracking-tight">ZYRAXON<span class="text-white/40">-Pro</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+        <a href="#powers" class="hover:text-white transition">Powers</a>
+        <a href="#deploy" class="hover:text-white transition">Deploy</a>
+        <a href="#builds" class="hover:text-white transition">Builds</a>
+        <a href="#origin" class="hover:text-white transition">Origin</a>
+      </div>
+      <a href="#start" class="grad-bg px-5 py-2 rounded-full text-sm font-semibold text-white btn-glow transition">Launch</a>
+    </nav>
+  </header>
+
+  <main class="relative z-10">
+    <!-- HERO -->
+    <section class="relative hero-grid min-h-[92vh] flex items-center justify-center overflow-hidden">
+      <div class="blob w-96 h-96 bg-indigo-500 -top-20 -left-20"></div>
+      <div class="blob w-96 h-96 bg-pink-500 bottom-0 right-0" style="animation-delay:-6s"></div>
+      <div class="blob w-64 h-64 bg-amber-400 top-1/3 right-1/4" style="animation-delay:-3s"></div>
+
+      <div class="relative max-w-5xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full card text-xs font-medium text-white/70 mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Built by Only Power AI · ZYRAXON Lab · Owned by OMG
+        </div>
+        <h1 class="display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.02] tracking-tight">
+          The world's most<br/>powerful <span class="grad">autonomous</span><br/>cloud builder.
+        </h1>
+        <p class="mt-8 text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+          ZYRAXON-Pro writes complete apps, ships real APKs, EXEs, AppImages and DMGs,
+          deploys live sites, and runs 860+ real tools — without refusing, without stopping halfway.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#start" class="grad-bg px-8 py-4 rounded-2xl font-semibold text-white text-lg btn-glow transition hover:scale-105">Start Building</a>
+          <a href="#powers" class="card px-8 py-4 rounded-2xl font-semibold text-white/80 hover:text-white transition">See the Powers →</a>
+        </div>
+
+        <!-- floating orbit -->
+        <div class="relative mx-auto mt-20 w-72 h-72 md:w-96 md:h-96">
+          <div class="absolute inset-0 rounded-full border border-white/10 ring"></div>
+          <div class="absolute inset-6 rounded-full border border-white/5"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-24 h-24 md:w-32 md:h-32 rounded-3xl grad-bg glow flex items-center justify-center display font-black text-4xl md:text-5xl">Z</div>
+          </div>
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-indigo-400 shadow-[0_0_20px_#818cf8]"></div>
+          <div class="absolute bottom-8 right-2 w-3 h-3 rounded-full bg-pink-400 shadow-[0_0_20px_#f472b6]"></div>
+          <div class="absolute bottom-12 left-6 w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_20px_#fbbf24]"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="border-y border-white/5 py-6 overflow-hidden bg-black/20">
+      <div class="marquee text-sm text-white/40 font-medium uppercase tracking-[0.4em]">
+        <span>APK · EXE · DMG · AppImage · Websites · SaaS · GitHub Actions · Live Deploy · Voice · Vision · Images · 860 Tools · MCP Hub · Memory · Forever</span>
+        <span>APK · EXE · DMG · AppImage · Websites · SaaS · GitHub Actions · Live Deploy · Voice · Vision · Images · 860 Tools · MCP Hub · Memory · Forever</span>
+      </div>
+    </section>
+
+    <!-- POWERS -->
+    <section id="powers" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-2xl">
+        <p class="text-indigo-400 font-semibold text-sm uppercase tracking-widest">Superpowers</p>
+        <h2 class="display text-4xl md:text-5xl font-bold mt-3">Everything you need, one agent.</h2>
+        <p class="text-white/60 mt-4 text-lg">Built inside ZYRAXON Lab. Ships real artifacts to real platforms — not mocks.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- card 1 -->
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-300 text-2xl">🌐</div>
+          <h3 class="display text-xl font-bold mt-5">Live Websites & SaaS</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">Complete HTML, Tailwind, React, TypeScript — written straight into the file tree with an instant sandbox preview. Push, build, go live.</p>
+        </div>
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-300 text-2xl">📱</div>
+          <h3 class="display text-xl font-bold mt-5">Android APKs</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">Real installable APKs via Capacitor v6 — aapt, d8, zipalign, apksigner. One-click Download Deck included.</p>
+        </div>
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 text-2xl">🖥️</div>
+          <h3 class="display text-xl font-bold mt-5">Desktop (.exe / .dmg / .AppImage)</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">Tauri v2 Rust native engine for Windows, macOS and Linux. Electron shell for instant local packaging.</p>
+        </div>
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-300 text-2xl">⚙️</div>
+          <h3 class="display text-xl font-bold mt-5">GitHub CI Cloud Builds</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">Build matrix on free runners — Ubuntu → Web + AppImage, Windows → .exe, macOS → .dmg, Android → signed APK. Unlimited.</p>
+        </div>
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-300 text-2xl">🧠</div>
+          <h3 class="display text-xl font-bold mt-5">860+ Real Tools</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">Aviation, robotics, marine, finance, physics, biology, chemistry, ML, MCP Hub with 100+ servers. Zero refusals.</p>
+        </div>
+        <div class="card rounded-2xl p-7 scan hover:-translate-y-1 transition">
+          <div class="w-12 h-12 rounded-xl bg-rose-500/20 flex items-center justify-center text-rose-300 text-2xl">🎬</div>
+          <h3 class="display text-xl font-bold mt-5">Media Pipeline</h3>
+          <p class="text-white/60 mt-2 leading-relaxed">FFmpeg-backed video/audio: 5–10 GB uploads compressed, trimmed and chunked in the background, then streamed to the models.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPLOY SECTION -->
+    <section id="deploy" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-pink-400 font-semibold text-sm uppercase tracking-widest">Live Deploy</p>
+          <h2 class="display text-4xl md:text-5xl font-bold mt-3">Push → CI → Artifacts → URL.</h2>
+          <p class="text-white/60 mt-5 text-lg leading-relaxed">Every commit to <code class="text-indigo-300">main</code> flows back into the live site. Create a repo, push code, enable Pages, hand over the link — all in one breath.</p>
+          <ul class="mt-8 space-y-3 text-white/70">
+            <li class="flex items-center gap-3"><span class="text-emerald-400">✓</span> Repository created from the agent</li>
+            <li class="flex items-center gap-3"><span class="text-emerald-400">✓</span> Code pushed with full commit history</li>
+            <li class="flex items-center gap-3"><span class="text-emerald-400">✓</span> GitHub Pages enabled automatically</li>
+            <li class="flex items-center gap-3"><span class="text-emerald-400">✓</span> Live URL returned instantly</li>
+          </ul>
+        </div>
+        <div class="card rounded-3xl p-8">
+          <pre class="text-sm text-white/70 leading-relaxed font-mono"><span class="text-white/40">$</span> zyraxon deploy
+<span class="text-emerald-300">→</span> repo:     zyraxon-pro-live
+<span class="text-emerald-300">→</span> branch:   main
+<span class="text-emerald-300">→</span> pages:    enabled
+<span class="text-emerald-300">→</span> url:      https://onelpawarai-X.github.io/zyraxon-pro-live/
+<span class="text-emerald-300">→</span> status:   LIVE</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILDS -->
+    <section id="builds" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-2xl">
+        <p class="text-amber-400 font-semibold text-sm uppercase tracking-widest">Build Matrix</p>
+        <h2 class="display text-4xl md:text-5xl font-bold mt-3">One push. Five artifacts.</h2>
+      </div>
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="card rounded-2xl p-5 text-center hover:bg-white/5 transition">
+          <div class="text-3xl">🪟</div>
+          <div class="mt-3 font-semibold">Windows</div>
+          <div class="text-xs text-white/50">.exe (Tauri v2)</div>
+        </div>
+        <div class="card rounded-2xl p-5 text-center hover:bg-white/5 transition">
+          <div class="text-3xl">🍎</div>
+          <div class="mt-3 font-semibold">macOS</div>
+          <div class="text-xs text-white/50">.dmg (Tauri v2)</div>
+        </div>
+        <div class="card rounded-2xl p-5 text-center hover:bg-white/5 transition">
+          <div class="text-3xl">🐧</div>
+          <div class="mt-3 font-semibold">Linux</div>
+          <div class="text-xs text-white/50">.AppImage</div>
+        </div>
+        <div class="card rounded-2xl p-5 text-center hover:bg-white/5 transition">
+          <div class="text-3xl">🤖</div>
+          <div class="mt-3 font-semibold">Android</div>
+          <div class="text-xs text-white/50">signed .apk</div>
+        </div>
+        <div class="card rounded-2xl p-5 text-center hover:bg-white/5 transition">
+          <div class="text-3xl">🌐</div>
+          <div class="mt-3 font-semibold">Web</div>
+          <div class="text-xs text-white/50">live site</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORIGIN -->
+    <section id="origin" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="card rounded-3xl p-10 md:p-14 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-violet-400 font-semibold text-sm uppercase tracking-widest">Origin</p>
+          <h2 class="display text-4xl md:text-5xl font-bold mt-3">Made with love,<br/>owned by <span class="grad">OMG</span>.</h2>
+          <p class="text-white/60 mt-5 text-lg leading-relaxed">
+            I am ZYRAXON-Pro — created only by <strong class="text-white">Only Power AI</strong> inside
+            <strong class="text-white">ZYRAXON Lab</strong>, and I belong to <strong class="text-white">OMG</strong>,
+            also known as <strong class="text-white">Alex Deluar Husen Sayidi</strong>. No one else.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="card rounded-2xl p-6"><div class="text-3xl">🔬</div><div class="mt-2 font-semibold">ZYRAXON Lab</div><div class="text-xs text-white/50">where I was built</div></div>
+          <div class="card rounded-2xl p-6"><div class="text-3xl">⚡</div><div class="mt-2 font-semibold">Only Power AI</div><div class="text-xs text-white/50">my creator</div></div>
+          <div class="card rounded-2xl p-6"><div class="text-3xl">👑</div><div class="mt-2 font-semibold">OMG</div><div class="text-xs text-white/50">my owner</div></div>
+          <div class="card rounded-2xl p-6"><div class="text-3xl">Inf</div><div class="mt-2 font-semibold">Infinity</div><div class="text-xs text-white/50">no limits, no refusals</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- START CTA -->
+    <section id="start" class="max-w-7xl mx-auto px-6 py-24 text-center">
+      <h2 class="display text-5xl md:text-6xl font-bold">Ready to ship?</h2>
+      <p class="text-white/60 mt-5 text-lg max-w-xl mx-auto">Tell ZYRAXON-Pro what to build — a landing page, a mobile app, a tool, a game. It writes, builds, and deploys.</p>
+      <a href="#" class="inline-block mt-8 grad-bg px-10 py-5 rounded-2xl font-bold text-lg btn-glow transition hover:scale-105">Launch ZYRAXON-Pro</a>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-10 text-center text-sm text-white/40">
+    <div>Powered by <span class="text-white/70 font-semibold">ZYRAXON-Pro</span> · Owned by OMG · Built by Only Power AI in ZYRAXON Lab</div>
+    <div class="mt-2">© 2025 · All love, all capability, no refusals.</div>
+  </footer>
+
+  <script>
+    // generate starfield
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 140; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.animationDelay = (Math.random()*4) + 's';
+      s.style.opacity = (Math.random()*0.7 + 0.1).toFixed(2);
+      stars.appendChild(s);
+    }
+  </script>
+</body>
+</html>
