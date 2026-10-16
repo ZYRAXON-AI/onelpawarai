@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZYRAXON Studio | Beautiful Web Experience</title>
+  <meta name="description" content="A modern, beautiful website created with ZYRAXON technology.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'system-ui', 'sans-serif'], display: ['Fraunces', 'serif'] },
+          colors: { ink: '#0b0d13', paper: '#f5f1ea', accent: '#ff5a3c', mint: '#1fd6a0', gold: '#f4c542' }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-ink text-paper font-sans antialiased overflow-x-hidden">
+
+  <div class="fixed inset-0 -z-10 bg-grid opacity-60"></div>
+  <div class="fixed -top-40 -right-40 w-[40rem] h-[40rem] bg-accent/30 blur-[120px] rounded-full -z-10 pulse-glow"></div>
+  <div class="fixed -bottom-40 -left-40 w-[40rem] h-[40rem] bg-mint/20 blur-[120px] rounded-full -z-10 pulse-glow-2"></div>
+
+  <header class="relative z-50 border-b border-white/5 backdrop-blur-md bg-ink/60 sticky top-0">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-gold grid place-items-center shadow-lg shadow-accent/30 group-hover:scale-105 transition">
+          <span class="font-display text-ink font-bold">Z</span>
+        </span>
+        <span class="font-display font-semibold tracking-tight text-xl">ZYRAXON</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-paper/70">
+        <a href="#features" class="hover:text-accent transition">Features</a>
+        <a href="#showcase" class="hover:text-accent transition">Showcase</a>
+        <a href="#testimonials" class="hover:text-accent transition">Stories</a>
+        <a href="#pricing" class="hover:text-accent transition">Pricing</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-block text-sm text-paper/70 hover:text-paper transition">Log in</a>
+        <a href="#contact" class="px-4 py-2 rounded-full bg-paper text-ink text-sm font-semibold hover:bg-accent hover:text-paper transition">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="relative pt-24 pb-32 px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-paper/70 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-mint animate-pulse"></span>
+          Trusted by 12,000+ creators worldwide
+        </div>
+        <h1 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+          Build something <em class="not-italic text-accent">memorable</em>, not just something <span class="text-paper/40">that ships.</span>
+        </h1>
+        <p class="mt-8 text-lg text-paper/60 max-w-xl leading-relaxed">
+          A calm, beautiful workspace for designing, shipping, and growing digital products. No noise. No clutter. Just you, your idea, and a clear path to launch.
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a href="#contact" class="px-6 py-3.5 rounded-full bg-accent text-paper font-semibold shadow-xl shadow-accent/30 hover:scale-105 transition">Start for free →</a>
+          <button id="playBtn" class="group flex items-center gap-3 text-paper/80 hover:text-paper transition">
+            <span class="w-11 h-11 rounded-full border border-white/20 grid place-items-center group-hover:border-accent transition">
+              <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.5 5.5l8 4.5-8 4.5V5.5z"/></svg>
+            </span>
+            <span class="text-sm">Watch the 90s tour</span>
+          </button>
+        </div>
+        <div class="mt-12 flex items-center gap-6 text-xs text-paper/50">
+          <div class="flex -space-x-2">
+            <img src="https://i.pravatar.cc/40?img=12" class="w-8 h-8 rounded-full ring-2 ring-ink" alt="">
+            <img src="https://i.pravatar.cc/40?img=23" class="w-8 h-8 rounded-full ring-2 ring-ink" alt="">
+            <img src="https://i.pravatar.cc/40?img=34" class="w-8 h-8 rounded-full ring-2 ring-ink" alt="">
+            <img src="https://i.pravatar.cc/40?img=45" class="w-8 h-8 rounded-full ring-2 ring-ink" alt="">
+          </div>
+          <span>⭐ 4.9 / 5 from 2,400+ reviews</span>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent backdrop-blur-xl p-6 shadow-2xl shadow-black/50 tilt-card">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+            <span class="w-3 h-3 rounded-full bg-green-400"></span>
+            <span class="ml-auto text-xs text-paper/40 font-mono">dashboard.zyraxon.app</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=640&fit=crop" alt="Dashboard preview" class="rounded-2xl w-full">
+          <div class="absolute -bottom-6 -right-6 bg-ink/90 border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-xl w-48">
+            <div class="flex items-center gap-2 text-xs text-paper/60 mb-2"><span class="w-2 h-2 rounded-full bg-mint"></span> Live</div>
+            <div class="text-2xl font-display font-bold">$24,380</div>
+            <div class="text-xs text-mint mt-1">▲ 12.4% this week</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-y border-white/5 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <p class="text-center text-xs uppercase tracking-[0.3em] text-paper/40 mb-8">Trusted by teams that ship fast</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-paper/40">
+        <span class="font-display text-2xl font-semibold">Notion</span>
+        <span class="font-display text-2xl font-semibold">Stripe</span>
+        <span class="font-display text-2xl font-semibold">Linear</span>
+        <span class="font-display text-2xl font-semibold">Vercel</span>
+        <span class="font-display text-2xl font-semibold">Figma</span>
+        <span class="font-display text-2xl font-semibold">Loom</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-28 px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-2xl">
+        <span class="text-accent text-sm font-semibold uppercase tracking-widest">Features</span>
+        <h2 class="font-display text-4xl md:text-5xl mt-4 tracking-tight">Everything you need, nothing you don't.</h2>
+        <p class="mt-5 text-paper/60 text-lg">A focused toolkit designed to feel like an extension of your mind rather than another obligation.</p>
+      </div>
+      <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-accent/20 grid place-items-center text-accent mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Built for clarity</h3>
+          <p class="text-paper/60 leading-relaxed">One workspace. One focus. Switching tabs is free, but your attention shouldn't be.</p>
+        </div>
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-mint/20 grid place-items-center text-mint mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Insanely fast</h3>
+          <p class="text-paper/60 leading-relaxed">Snap performance on mobile, desktop, and everything in between. Optimised for joy.</p>
+        </div>
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-gold/20 grid place-items-center text-gold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Privacy first</h3>
+          <p class="text-paper/60 leading-relaxed">Your data never leaves your control. End-to-end encrypted by design, never by afterthought.</p>
+        </div>
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-accent/20 grid place-items-center text-accent mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Real-time sync</h3>
+          <p class="text-paper/60 leading-relaxed">Instantly consistent across devices. Edit on your phone, finish on your laptop.</p>
+        </div>
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-mint/20 grid place-items-center text-mint mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 7h8M8 12h5M8 17h8"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Open by default</h3>
+          <p class="text-paper/60 leading-relaxed">Export everything. No lock-in, no surprises. Your work is yours forever.</p>
+        </div>
+        <div class="feature-card rounded-3xl border border-white/10 bg-white/[0.03] p-8 hover:bg-white/[0.06] transition">
+          <div class="w-12 h-12 rounded-2xl bg-gold/20 grid place-items-center text-gold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-9-9"/><path d="M21 3v6h-6"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Always improving</h3>
+          <p class="text-paper/60 leading-relaxed">Weekly updates shaped by user requests. Built with you, not just for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase" class="py-28 px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div class="order-2 lg:order-1">
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=700&fit=crop" alt="Analytics showcase" class="w-full">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <div class="flex items-center gap-3 text-sm text-paper/80">
+              <span class="px-2 py-1 rounded-md bg-accent text-paper text-xs font-semibold">NEW</span>
+              Analytics · Live insights
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <span class="text-mint text-sm font-semibold uppercase tracking-widest">Showcase</span>
+        <h2 class="font-display text-4xl md:text-5xl mt-4 tracking-tight">See your work come alive.</h2>
+        <p class="mt-5 text-paper/60 text-lg leading-relaxed">A live preview surface built right into the app. Every change, every interaction, rendered in real time as you build.</p>
+        <ul class="mt-8 space-y-4 text-paper/70">
+          <li class="flex items-start gap-3"><span class="mt-1 text-mint">✓</span> Live hot-reload without ever refreshing</li>
+          <li class="flex items-start gap-3"><span class="mt-1 text-mint">✓</span> Collaborate with your whole team in real time</li>
+          <li class="flex items-start gap-3"><span class="mt-1 text-mint">✓</span> One-click deploy to any platform</li>
+          <li class="flex items-start gap-3"><span class="mt-1 text-mint">✓</span> Dark mode, accessibility, and performance baked in</li>
+        </ul>
+        <a href="#contact" class="inline-block mt-10 px-6 py-3 rounded-full border border-white/20 hover:border-accent hover:text-accent transition">Explore the studio →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="py-28 px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-gold text-sm font-semibold uppercase tracking-widest">Stories</span>
+        <h2 class="font-display text-4xl md:text-5xl mt-4 tracking-tight">Loved by people who make things.</h2>
+      </div>
+      <div class="mt-16 grid md:grid-cols-3 gap-6" id="testimonialsList"></div>
+    </div>
+  </section>
+
+  <section id="pricing" class="py-28 px-6 lg:px-8 bg-white/[0.02] border-y border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-accent text-sm font-semibold uppercase tracking-widest">Pricing</span>
+        <h2 class="font-display text-4xl md:text-5xl mt-4 tracking-tight">Simple, honest pricing.</h2>
+        <p class="mt-5 text-paper/60 text-lg">Start free. Upgrade only when you're ready.</p>
+      </div>
+      <div class="mt-16 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+          <h3 class="text-lg font-semibold">Starter</h3>
+          <div class="mt-4 flex items-baseline gap-1"><span class="text-4xl font-display font-bold">$0</span><span class="text-paper/50">/mo</span></div>
+          <ul class="mt-8 space-y-3 text-paper/70 text-sm">
+            <li class="flex gap-2"><span class="text-mint">✓</span> 3 projects</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> Community support</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> 1GB storage</li>
+          </ul>
+          <a href="#contact" class="block mt-8 text-center py-2.5 rounded-full border border-white/20 hover:bg-white/5 transition">Get started</a>
+        </div>
+        <div class="rounded-3xl border-2 border-accent bg-gradient-to-b from-accent/10 to-transparent p-8 relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-accent text-xs font-semibold">Popular</span>
+          <h3 class="text-lg font-semibold">Pro</h3>
+          <div class="mt-4 flex items-baseline gap-1"><span class="text-4xl font-display font-bold">$12</span><span class="text-paper/50">/mo</span></div>
+          <ul class="mt-8 space-y-3 text-paper/70 text-sm">
+            <li class="flex gap-2"><span class="text-mint">✓</span> Unlimited projects</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> Priority support</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> 50GB storage</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> Team collaboration</li>
+          </ul>
+          <a href="#contact" class="block mt-8 text-center py-2.5 rounded-full bg-accent text-paper font-semibold shadow-lg shadow-accent/30 hover:scale-105 transition">Start free trial</a>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+          <h3 class="text-lg font-semibold">Studio</h3>
+          <div class="mt-4 flex items-baseline gap-1"><span class="text-4xl font-display font-bold">$49</span><span class="text-paper/50">/mo</span></div>
+          <ul class="mt-8 space-y-3 text-paper/70 text-sm">
+            <li class="flex gap-2"><span class="text-mint">✓</span> Everything in Pro</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> SSO & advanced security</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> 500GB storage</li>
+            <li class="flex gap-2"><span class="text-mint">✓</span> Dedicated success</li>
+          </ul>
+          <a href="#contact" class="block mt-8 text-center py-2.5 rounded-full border border-white/20 hover:bg-white/5 transition">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-28 px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display text-5xl md:text-6xl tracking-tight">Ready to make something <em class="text-accent">beautiful?</em></h2>
+      <p class="mt-6 text-paper/60 text-lg">Join thousands of creators already building on ZYRAXON.</p>
+      <form id="signupForm" class="mt-10 max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+        <input type="email" required placeholder="your@email.com" class="flex-1 px-5 py-3.5 rounded-full bg-white/5 border border-white/15 text-paper placeholder:text-paper/40 focus:outline-none focus:border-accent">
+        <button class="px-6 py-3.5 rounded-full bg-accent text-paper font-semibold shadow-xl shadow-accent/30 hover:scale-105 transition">Get access</button>
+      </form>
+      <p class="mt-4 text-xs text-paper/40">No credit card required · Cancel anytime</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 py-12 px-6 lg:px-8 text-sm text-paper/50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <span>© 2025 ZYRAXON Studio. Crafted with care.</span>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-paper transition">Twitter</a>
+        <a href="#" class="hover:text-paper transition">GitHub</a>
+        <a href="#" class="hover:text-paper transition">Changelog</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 rounded-full bg-mint text-ink text-sm font-semibold opacity-0 pointer-events-none transition z-50">Thanks! Check your inbox.</div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
