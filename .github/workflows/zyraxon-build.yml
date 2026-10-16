@@ -23,7 +23,7 @@ jobs:
           yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
           "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
       - name: Build signed APK
-        run: bash .zyraxon/build-apk.sh "OMG App" "com.zyraxon.omgapp" "apps/omg-app/public"
+        run: bash .zyraxon/build-apk.sh "OMG App" "com.omg.app" "apps/omg-app/public"
       - uses: actions/upload-artifact@v4
         with:
           name: omg-app-apk
@@ -73,26 +73,3 @@ jobs:
           name: OMG App build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: dist/*
-
-  web:
-    name: Web bundle
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Zip the site
-        run: |
-          cd "apps/omg-app/public"
-          zip -qr ../site.zip .
-      - uses: actions/upload-artifact@v4
-        with:
-          name: omg-app-web
-          path: site.zip
-      - name: Publish download links
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: OMG App build ${{ github.run_number }}
-          body: Built by ZYRAXON-Pro
-          files: site.zip
