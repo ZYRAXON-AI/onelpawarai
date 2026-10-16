@@ -6,7 +6,7 @@ function createWindow() {
     width: 1200,
     height: 800,
     backgroundColor: '#000000',
-    title: "ZYRAXON Desktop Suite",
+    title: "OMG App",
     webPreferences: { contextIsolation: true, nodeIntegration: false },
   });
   win.loadFile(path.join(__dirname, 'web', 'index.html'));
