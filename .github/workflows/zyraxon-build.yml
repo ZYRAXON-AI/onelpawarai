@@ -5,37 +5,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  android:
-    name: Android APK
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-      - name: Set up Android SDK
-        run: |
-          SDK="$ANDROID_HOME"
-          echo "Using SDK at $SDK"
-          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
-          "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
-      - name: Build signed APK
-        run: bash .zyraxon/build-apk.sh "CI Demo App" "com.zyraxon.cidemoapp" "web"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ci-demo-app-apk
-          path: out/*.apk
-      - name: Publish download links
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: CI Demo App build ${{ github.run_number }}
-          body: Built by ZYRAXON-Pro
-          files: out/*.apk
-
   desktop:
     name: Desktop installers
     runs-on: ${{ matrix.os }}
@@ -47,10 +16,6 @@ jobs:
         include:
           - os: windows-latest
             artifact: windows
-          - os: macos-latest
-            artifact: macos
-          - os: ubuntu-latest
-            artifact: linux
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -64,12 +29,12 @@ jobs:
         run: npx electron-builder --publish never --config electron-builder.json
       - uses: actions/upload-artifact@v4
         with:
-          name: ci-demo-app-${{ matrix.artifact }}
+          name: zyraxon-desktop-suite-${{ matrix.artifact }}
           path: dist/**
       - name: Publish download links
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: CI Demo App build ${{ github.run_number }}
+          name: ZYRAXON Desktop Suite build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: dist/*
