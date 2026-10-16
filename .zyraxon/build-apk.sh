@@ -5,8 +5,20 @@ APP_NAME="${1:-App}"
 PKG_ID="${2:-com.zyraxon.app}"
 WEB_DIR="${3:-web}"
 
-BT="${ANDROID_HOME}/build-tools/34.0.0"
-AJ="${ANDROID_HOME}/platforms/android-34/android.jar"
+SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Android/sdk}}"
+# Runner images move the build-tools version around, so take whatever is there
+# and fall back to the one this workflow asked for.
+BT="$(ls -d "$SDK_ROOT"/build-tools/* 2>/dev/null | sort -V | tail -1)"
+if [ -z "$BT" ]; then
+  echo "No Android build-tools found under $SDK_ROOT" >&2
+  exit 1
+fi
+AJ="$(ls "$SDK_ROOT"/platforms/android-*/android.jar 2>/dev/null | sort -V | tail -1)"
+if [ -z "$AJ" ]; then
+  echo "No Android platform found under $SDK_ROOT" >&2
+  exit 1
+fi
+echo "Using build-tools $BT and $AJ"
 WORK="$(pwd)/.zyraxon-apk"
 rm -rf "$WORK" && mkdir -p "$WORK"/{res/values,res/mipmap-hdpi,assets,src,classes,gen}
 PKG_PATH="$(echo "$PKG_ID" | tr '.' '/')"
@@ -72,8 +84,9 @@ JAVA
 
 cd "$WORK"
 "$BT/aapt2" compile --dir res -o res.zip
+API_LEVEL="$(basename "$(dirname "$AJ")" | sed 's/android-//')"
 "$BT/aapt2" link -o base.apk -I "$AJ" --manifest AndroidManifest.xml -R res.zip \
-  -A assets --java gen --auto-add-overlay --min-sdk-version 21 --target-sdk-version 34
+  -A assets --java gen --auto-add-overlay --min-sdk-version 21 --target-sdk-version "$API_LEVEL"
 javac -source 8 -target 8 -bootclasspath "$AJ" -cp "$AJ" -d classes \
   $(find src gen -name '*.java') 2>/dev/null || javac -bootclasspath "$AJ" -cp "$AJ" -d classes $(find src gen -name '*.java')
 "$BT/d8" --lib "$AJ" --min-api 21 --output . $(find classes -name '*.class')
