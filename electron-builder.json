@@ -27,6 +27,7 @@
       "AppImage",
       "deb"
     ],
-    "category": "Utility"
+    "category": "Utility",
+    "maintainer": "ZYRAXON-Pro <onlypowerai@zyraxon.lab>"
   }
 }
