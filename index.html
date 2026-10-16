@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZYRAXON Desktop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #11162a;
+    --card: #161c33;
+    --card2: #1c2340;
+    --border: #2a3358;
+    --accent: #6c5ce7;
+    --accent2: #a29bfe;
+    --accent3: #00cec9;
+    --text: #e8ecf4;
+    --muted: #8a93b2;
+    --danger: #ff6b6b;
+    --success: #55efc4;
+    --warn: #fdcb6e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(1200px 800px at 20% 0%, #1a1f3d 0%, #0a0e1a 60%);
+    color: var(--text);
+    overflow: hidden;
+  }
+  .app { display: grid; grid-template-columns: 240px 1fr; height: 100vh; }
+  .sidebar {
+    background: linear-gradient(180deg, #0f1426 0%, #0a0e1a 100%);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    display: flex; flex-direction: column;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .brand-logo {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    display: grid; place-items: center; font-weight: 800; font-size: 18px;
+    box-shadow: 0 8px 24px rgba(108,92,231,0.4);
+  }
+  .brand-name { font-weight: 700; font-size: 17px; }
+  .brand-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 14px; border-radius: 10px; cursor: pointer;
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    transition: all .18s ease;
+    border: 1px solid transparent;
+  }
+  .nav-item:hover { background: rgba(108,92,231,0.08); color: var(--text); }
+  .nav-item.active {
+    background: linear-gradient(90deg, rgba(108,92,231,0.25), rgba(0,206,201,0.1));
+    color: var(--text); border-color: rgba(108,92,231,0.4);
+  }
+  .nav-icon { font-size: 17px; width: 22px; text-align: center; }
+  .sidebar-footer {
+    padding-top: 16px; border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--muted);
+  }
+  .main { overflow: auto; padding: 28px 32px; }
+  .page { display: none; }
+  .page.active { display: block; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .title { font-size: 26px; font-weight: 700; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .grid { display: grid; gap: 16px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .stat { display: flex; flex-direction: column; gap: 6px; }
+  .stat-val { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, var(--accent2), var(--accent3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .stat-trend { font-size: 12px; color: var(--success); }
+
+  /* Dashboard widgets */
+  .widget { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .widget-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+  /* Tasks */
+  .task-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .input {
+    flex: 1; background: var(--bg2); border: 1px solid var(--border);
+    color: var(--text); padding: 10px 14px; border-radius: 10px; font-size: 14px;
+    outline: none; transition: border .15s;
+  }
+  .input:focus { border-color: var(--accent); }
+  .btn {
+    background: linear-gradient(135deg, var(--accent), #5a4bd1); color: #fff;
+    border: none; padding: 10px 16px; border-radius: 10px; font-weight: 600;
+    cursor: pointer; font-size: 13px; transition: transform .1s, box-shadow .2s;
+  }
+  .btn:hover { box-shadow: 0 6px 18px rgba(108,92,231,0.4); transform: translateY(-1px); }
+  .btn-secondary { background: var(--card2); color: var(--text); border: 1px solid var(--border); }
+  .btn-danger { background: var(--danger); }
+  .task-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .task-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  }
+  .task-item.done .task-text { text-decoration: line-through; color: var(--muted); }
+  .task-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent); }
+  .task-text { flex: 1; font-size: 14px; }
+  .task-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
+  .task-del:hover { color: var(--danger); }
+
+  /* Notes */
+  .notes-area { width: 100%; min-height: 320px; background: var(--bg2); border: 1px solid var(--border); color: var(--text); padding: 14px; border-radius: 10px; font-size: 14px; resize: vertical; outline: none; font-family: inherit; }
+  .notes-area:focus { border-color: var(--accent); }
+
+  /* Calculator */
+  .calc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 280px; }
+  .calc-display { grid-column: 1 / -1; background: var(--bg2); padding: 14px; border-radius: 10px; text-align: right; font-size: 22px; font-weight: 600; min-height: 52px; border: 1px solid var(--border); word-break: break-all; }
+  .calc-btn { background: var(--card2); border: 1px solid var(--border); color: var(--text); padding: 14px; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: 600; transition: background .15s; }
+  .calc-btn:hover { background: var(--accent); }
+  .calc-btn.op { background: rgba(108,92,231,0.2); color: var(--accent2); }
+  .calc-btn.eq { background: linear-gradient(135deg, var(--accent), var(--accent3)); color: #fff; }
+
+  /* Weather-ish clock */
+  .clock { font-size: 48px; font-weight: 800; letter-spacing: -1px; }
+  .date-line { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  /* Pomodoro */
+  .pomo { text-align: center; }
+  .pomo-time { font-size: 56px; font-weight: 800; background: linear-gradient(135deg, var(--accent2), var(--accent3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pomo-controls { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+
+  /* Settings */
+  .setting-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .setting-row:last-child { border-bottom: none; }
+  .toggle { width: 44px; height: 24px; border-radius: 12px; background: var(--border); position: relative; cursor: pointer; transition: background .2s; }
+  .toggle.on { background: var(--accent); }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .2s; }
+  .toggle.on::after { transform: translateX(20px); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">Z</div>
+      <div>
+        <div class="brand-name">ZYRAXON</div>
+        <div class="brand-sub">Desktop Suite</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span>Dashboard</div>
+      <div class="nav-item" data-page="tasks"><span class="nav-icon">✅</span>Tasks</div>
+      <div class="nav-item" data-page="notes"><span class="nav-icon">📝</span>Notes</div>
+      <div class="nav-item" data-page="calculator"><span class="nav-icon">🧮</span>Calculator</div>
+      <div class="nav-item" data-page="pomodoro"><span class="nav-icon">⏱️</span>Pomodoro</div>
+      <div class="nav-item" data-page="settings"><span class="nav-icon">⚙️</span>Settings</div>
+    </nav>
+    <div class="sidebar-footer">
+      Powered by ZYRAXON-Pro<br/>© Only Power AI · ZYRAXON Lab
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- Dashboard -->
+    <section class="page active" id="page-dashboard">
+      <div class="header">
+        <div>
+          <div class="title">Welcome back 👋</div>
+          <div class="subtitle">Your personal productivity hub</div>
+        </div>
+        <div class="clock" id="clock">--:--</div>
+      </div>
+      <div class="grid grid-3" style="margin-bottom:16px;">
+        <div class="card stat">
+          <div class="stat-label">Tasks Done</div>
+          <div class="stat-val" id="stat-done">0</div>
+          <div class="stat-trend">↑ keep going</div>
+        </div>
+        <div class="card stat">
+          <div class="stat-label">Pending</div>
+          <div class="stat-val" id="stat-pending">0</div>
+          <div class="stat-trend" style="color:var(--warn)">focus now</div>
+        </div>
+        <div class="card stat">
+          <div class="stat-label">Notes</div>
+          <div class="stat-val" id="stat-notes">0</div>
+          <div class="stat-trend" style="color:var(--accent3)">saved</div>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="widget">
+          <div class="widget-title">📌 Quick Tasks</div>
+          <ul class="task-list" id="quick-tasks"></ul>
+        </div>
+        <div class="widget">
+          <div class="widget-title">📅 Today</div>
+          <div class="date-line" id="date-line">—</div>
+          <div style="margin-top:14px; color:var(--muted); font-size:13px; line-height:1.7;">
+            Stay focused, stay sharp. Use the Pomodoro timer to keep momentum.
+            Your notes and tasks are saved locally on this device.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tasks -->
+    <section class="page" id="page-tasks">
+      <div class="header">
+        <div><div class="title">Tasks</div><div class="subtitle">Manage your to-dos</div></div>
+      </div>
+      <div class="card">
+        <div class="task-input-row">
+          <input class="input" id="task-input" placeholder="Add a new task..." />
+          <button class="btn" id="task-add">Add</button>
+        </div>
+        <ul class="task-list" id="task-list"></ul>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="page" id="page-notes">
+      <div class="header">
+        <div><div class="title">Notes</div><div class="subtitle">Your scratchpad</div></div>
+        <button class="btn btn-secondary" id="notes-save">Save</button>
+      </div>
+      <textarea class="notes-area" id="notes-area" placeholder="Write anything here..."></textarea>
+    </section>
+
+    <!-- Calculator -->
+    <section class="page" id="page-calculator">
+      <div class="header"><div><div class="title">Calculator</div><div class="subtitle">Quick math</div></div></div>
+      <div class="card" style="display:inline-block;">
+        <div class="calc">
+          <div class="calc-display" id="calc-display">0</div>
+          <button class="calc-btn" data-k="C">C</button>
+          <button class="calc-btn" data-k="±">±</button>
+          <button class="calc-btn" data-k="%">%</button>
+          <button class="calc-btn op" data-k="/">÷</button>
+          <button class="calc-btn" data-k="7">7</button>
+          <button class="calc-btn" data-k="8">8</button>
+          <button class="calc-btn" data-k="9">9</button>
+          <button class="calc-btn op" data-k="*">×</button>
+          <button class="calc-btn" data-k="4">4</button>
+          <button class="calc-btn" data-k="5">5</button>
+          <button class="calc-btn" data-k="6">6</button>
+          <button class="calc-btn op" data-k="-">−</button>
+          <button class="calc-btn" data-k="1">1</button>
+          <button class="calc-btn" data-k="2">2</button>
+          <button class="calc-btn" data-k="3">3</button>
+          <button class="calc-btn op" data-k="+">+</button>
+          <button class="calc-btn" data-k="0" style="grid-column:span 2;">0</button>
+          <button class="calc-btn" data-k=".">.</button>
+          <button class="calc-btn eq" data-k="=">=</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pomodoro -->
+    <section class="page" id="page-pomodoro">
+      <div class="header"><div><div class="title">Pomodoro</div><div class="subtitle">25 min focus sessions</div></div></div>
+      <div class="card pomo">
+        <div class="pomo-time" id="pomo-time">25:00</div>
+        <div style="color:var(--muted); font-size:13px; margin-top:6px;" id="pomo-status">Ready</div>
+        <div class="pomo-controls">
+          <button class="btn" id="pomo-start">Start</button>
+          <button class="btn btn-secondary" id="pomo-pause">Pause</button>
+          <button class="btn btn-danger" id="pomo-reset">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="page" id="page-settings">
+      <div class="header"><div><div class="title">Settings</div><div class="subtitle">Personalize your app</div></div></div>
+      <div class="card">
+        <div class="setting-row">
+          <div><div style="font-weight:600;">Dark Mode</div><div style="color:var(--muted);font-size:12px;">Always on for this theme</div></div>
+          <div class="toggle on" id="tog-dark"></div>
+        </div>
+        <div class="setting-row">
+          <div><div style="font-weight:600;">Sound Effects</div><div style="color:var(--muted);font-size:12px;">Timer beeps</div></div>
+          <div class="toggle on" id="tog-sound"></div>
+        </div>
+        <div class="setting-row">
+          <div><div style="font-weight:600;">Data</div><div style="color:var(--muted);font-size:12px;">Clear all saved data</div></div>
+          <button class="btn btn-danger" id="clear-data">Clear</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <div style="font-weight:600; margin-bottom:8px;">About</div>
+        <div style="color:var(--muted); font-size:13px; line-height:1.7;">
+          ZYRAXON Desktop Suite v1.0<br/>
+          Built by ZYRAXON-Pro · Only Power AI · ZYRAXON Lab<br/>
+          Owned by OMG (Alex Deluar Husen Sayidi)
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  // ---------- Navigation ----------
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      el.classList.add('active');
+      const page = el.dataset.page;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      if (page === 'dashboard') refreshStats();
+    });
+  });
+
+  // ---------- Clock ----------
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    document.getElementById('date-line').textContent = now.toLocaleDateString(undefined, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  }
+  setInterval(updateClock, 1000); updateClock();
+
+  // ---------- Tasks ----------
+  let tasks = JSON.parse(localStorage.getItem('zyraxon_tasks') || '[]');
+  function saveTasks() { localStorage.setItem('zyraxon_tasks', JSON.stringify(tasks)); }
+  function renderTasks() {
+    const list = document.getElementById('task-list');
+    const quick = document.getElementById('quick-tasks');
+    list.innerHTML = ''; quick.innerHTML = '';
+    tasks.forEach((t, i) => {
+      const li = document.createElement('li');
+      li.className = 'task-item' + (t.done ? ' done' : '');
+      li.innerHTML = `<input type="checkbox" class="task-check" ${t.done?'checked':''} data-i="${i}">
+        <span class="task-text">${escapeHtml(t.text)}</span>
+        <button class="task-del" data-i="${i}">✕</button>`;
+      list.appendChild(li);
+      if (!t.done && i < 5) {
+        const q = li.cloneNode(true);
+        // rebind
+        q.querySelector('.task-check').addEventListener('change', e => toggleTask(+e.target.dataset.i));
+        q.querySelector('.task-del').addEventListener('click', e => deleteTask(+e.target.dataset.i));
+        quick.appendChild(q);
+      }
+    });
+    // bind main list
+    list.querySelectorAll('.task-check').forEach(c => c.addEventListener('change', e => toggleTask(+e.target.dataset.i)));
+    list.querySelectorAll('.task-del').forEach(b => b.addEventListener('click', e => deleteTask(+e.target.dataset.i)));
+    refreshStats();
+  }
+  function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function addTask() {
+    const input = document.getElementById('task-input');
+    const text = input.value.trim();
+    if (!text) return;
+    tasks.unshift({ text, done: false, created: Date.now() });
+    input.value = '';
+    saveTasks(); renderTasks();
+  }
+  function toggleTask(i){ tasks[i].done = !tasks[i].done; saveTasks(); renderTasks(); }
+  function deleteTask(i){ tasks.splice(i,1); saveTasks(); renderTasks(); }
+  document.getElementById('task-add').addEventListener('click', addTask);
+  document.getElementById('task-input').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
+
+  // ---------- Notes ----------
+  const notesArea = document.getElementById('notes-area');
+  notesArea.value = localStorage.getItem('zyraxon_notes') || '';
+  document.getElementById('notes-save').addEventListener('click', () => {
+    localStorage.setItem('zyraxon_notes', notesArea.value);
+    const btn = document.getElementById('notes-save');
+    const orig = btn.textContent; btn.textContent = 'Saved ✓';
+    setTimeout(() => btn.textContent = orig, 1200);
+  });
+
+  // ---------- Calculator ----------
+  let calcExpr = '';
+  const calcDisplay = document.getElementById('calc-display');
+  document.querySelectorAll('.calc-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const k = b.dataset.k;
+      if (k === 'C') { calcExpr = ''; calcDisplay.textContent = '0'; return; }
+      if (k === '=') {
+        try {
+          const res = Function('"use strict"; return (' + calcExpr.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-') + ')')();
+          calcDisplay.textContent = (res === undefined ? '0' : (Number.isFinite(res) ? res : 'Error'));
+          calcExpr = String(res);
+        } catch { calcDisplay.textContent = 'Error'; calcExpr = ''; }
+        return;
+      }
+      if (k === '±') { calcExpr = calcExpr ? '-' + calcExpr : ''; calcDisplay.textContent = calcExpr || '0'; return; }
+      if (k === '%') { try { calcExpr = String(eval(calcExpr)/100); calcDisplay.textContent = calcExpr; } catch {} return; }
+      calcExpr += k;
+      calcDisplay.textContent = calcExpr || '0';
+    });
+  });
+
+  // ---------- Pomodoro ----------
+  let pomoSeconds = 25 * 60;
+  let pomoTimer = null;
+  let pomoRunning = false;
+  function formatPomo(s){ const m = Math.floor(s/60); const sec = s % 60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
+  function updatePomo(){ document.getElementById('pomo-time').textContent = formatPomo(pomoSeconds); }
+  document.getElementById('pomo-start').addEventListener('click', () => {
+    if (pomoRunning) return;
+    pomoRunning = true;
+    document.getElementById('pomo-status').textContent = 'Focusing...';
+    pomoTimer = setInterval(() => {
+      if (pomoSeconds <= 0) { clearInterval(pomoTimer); pomoRunning = false; document.getElementById('pomo-status').textContent = 'Done! 🎉'; return; }
+      pomoSeconds--; updatePomo();
+    }, 1000);
+  });
+  document.getElementById('pomo-pause').addEventListener('click', () => {
+    if (pomoTimer) { clearInterval(pomoTimer); pomoTimer = null; pomoRunning = false; document.getElementById('pomo-status').textContent = 'Paused'; }
+  });
+  document.getElementById('pomo-reset').addEventListener('click', () => {
+    if (pomoTimer) { clearInterval(pomoTimer); pomoTimer = null; }
+    pomoRunning = false; pomoSeconds = 25*60; updatePomo();
+    document.getElementById('pomo-status').textContent = 'Ready';
+  });
+
+  // ---------- Settings toggles ----------
+  document.querySelectorAll('.toggle').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+  document.getElementById('clear-data').addEventListener('click', () => {
+    if (confirm('Clear all saved data?')) {
+      localStorage.removeItem('zyraxon_tasks');
+      localStorage.removeItem('zyraxon_notes');
+      tasks = []; renderTasks(); notesArea.value = '';
+    }
+  });
+
+  // ---------- Stats ----------
+  function refreshStats() {
+    const done = tasks.filter(t => t.done).length;
+    document.getElementById('stat-done').textContent = done;
+    document.getElementById('stat-pending').textContent = tasks.length - done;
+    document.getElementById('stat-notes').textContent = (localStorage.getItem('zyraxon_notes') || '').trim() ? 1 : 0;
+  }
+
+  renderTasks(); refreshStats();
+</script>
+</body>
+</html>
