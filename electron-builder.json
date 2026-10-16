@@ -1,6 +1,6 @@
 {
-  "appId": "com.zyraxon.cidemoapp",
-  "productName": "CI Demo App",
+  "appId": "com.zyraxon.zyraxondesktopsuite",
+  "productName": "ZYRAXON Desktop Suite",
   "directories": {
     "output": "dist",
     "app": "."
@@ -15,19 +15,5 @@
     "target": [
       "nsis"
     ]
-  },
-  "mac": {
-    "target": [
-      "dmg"
-    ],
-    "identity": null
-  },
-  "linux": {
-    "target": [
-      "AppImage",
-      "deb"
-    ],
-    "category": "Utility",
-    "maintainer": "ZYRAXON-Pro <onlypowerai@zyraxon.lab>"
   }
 }
