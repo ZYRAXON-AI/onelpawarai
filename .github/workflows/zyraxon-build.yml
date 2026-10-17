@@ -23,7 +23,7 @@ jobs:
           yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
           "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
       - name: Build signed APK
-        run: bash .zyraxon/build-apk.sh "apk-test" "com.zyraxon.apktest" "web"
+        run: bash .zyraxon/build-apk.sh "streakly" "com.zyraxon.streakly" "web"
       - name: Verify the APK carries the real UI
         run: |
           # A signed APK proves nothing about its contents: an earlier build
@@ -49,84 +49,12 @@ jobs:
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: apk-test-apk
+          name: streakly-apk
           path: out/*.apk
       - name: Publish download links
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: apk-test build ${{ github.run_number }}
+          name: streakly build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: out/*.apk
-
-  desktop:
-    name: Desktop installers
-    runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            artifact: windows
-          - os: macos-latest
-            artifact: macos
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install Electron
-        run: npm install --no-save electron electron-builder
-      - name: Package installer
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-        run: npx electron-builder --publish never --config electron-builder.json
-      - name: Verify the installer carries the real UI
-        shell: bash
-        run: |
-          # An installer can be a plausible size and still hold a placeholder UI.
-          # Electron packs the app into app.asar, so read the UI back out of the
-          # built installer and compare it with the source.
-          python3 - <<'PY'
-          import glob, hashlib, subprocess, sys, tempfile, os, json
-          src = open("web/index.html", "rb").read()
-          want = hashlib.sha256(src).hexdigest()
-          found = False
-          for asar in glob.glob("dist/**/*.asar", recursive=True):
-              import struct
-              with open(asar, "rb") as f:
-                  f.read(8)
-                  head_size = struct.unpack("<I", f.read(4))[0]
-                  header = json.loads(f.read(head_size).split(b"\x00", 1)[0])
-                  base = 8 + 4 + head_size
-                  def walk(node, path=""):
-                      for name, meta in node.get("files", {}).items():
-                          p = f"{path}/{name}" if path else name
-                          if "files" in meta: walk(meta, p)
-                          elif p.endswith("web/index.html"):
-                              with open(asar, "rb") as g:
-                                  g.seek(base + int(meta["offset"]))
-                                  return g.read(int(meta["size"]))
-                      return None
-                  data = walk(header)
-                  if data is not None:
-                      got = hashlib.sha256(data).hexdigest()
-                      assert got == want, f"{asar} carries a different UI ({len(data)} bytes) — a placeholder shipped"
-                      print(f"{asar}: real UI embedded")
-                      found = True
-          if not found:
-              sys.exit("no app.asar containing web/index.html was found in dist/")
-          PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: apk-test-${{ matrix.artifact }}
-          path: dist/**
-      - name: Publish download links
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: apk-test build ${{ github.run_number }}
-          body: Built by ZYRAXON-Pro
-          files: dist/*
