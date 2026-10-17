@@ -99,4 +99,8 @@ mkdir -p "$(dirname "$WORK")/out"
 "$BT/apksigner" sign --ks release.jks --ks-pass pass:zyraxon --key-pass pass:zyraxon \
   --out "$(pwd)/../out/app-release.apk" aligned.apk
 "$BT/apksigner" verify "$(pwd)/../out/app-release.apk"
+# A signed APK without its dex installs and then shows nothing, so fail here
+# rather than publish a hollow build.
+unzip -l "$(pwd)/../out/app-release.apk" | grep -q "classes.dex" \
+  || { echo "classes.dex missing from the signed APK" >&2; exit 1; }
 echo "APK ready: $(pwd)/../out/app-release.apk"
