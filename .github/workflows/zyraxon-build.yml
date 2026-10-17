@@ -23,80 +23,38 @@ jobs:
           yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
           "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
       - name: Build signed APK
-        run: bash .zyraxon/build-apk.sh "note-app" "com.zyraxon.noteapp" "projects/note-app"
+        run: bash .zyraxon/build-apk.sh "apk-test" "com.zyraxon.apktest" "web"
+      - name: Verify the APK carries the real UI
+        run: |
+          # A signed APK proves nothing about its contents: an earlier build
+          # shipped a placeholder <h1>app-name</h1> because the UI was not where
+          # the script looked. Compare what is inside the APK against the UI that
+          # was meant to go in, and fail the job when they disagree.
+          python3 - <<'PY'
+          import glob, hashlib, zipfile, sys
+          apks = glob.glob("out/*.apk")
+          assert apks, "no APK was produced"
+          src = open("web/index.html", "rb").read()
+          want = hashlib.sha256(src).hexdigest()
+          for apk in apks:
+              with zipfile.ZipFile(apk) as z:
+                  dex = [n for n in z.namelist() if n.endswith(".dex")]
+                  assert dex, f"{apk} has no classes.dex and cannot run"
+                  got = hashlib.sha256(z.read("assets/index.html")).hexdigest()
+                  assert got == want, (
+                      f"{apk} carries a different UI than web/index.html "
+                      f"({len(src)} bytes expected) — it shipped a placeholder"
+                  )
+              print(f"{apk}: real UI embedded, dex present")
+          PY
       - uses: actions/upload-artifact@v4
         with:
-          name: note-app-apk
+          name: apk-test-apk
           path: out/*.apk
       - name: Publish download links
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: note-app build ${{ github.run_number }}
+          name: apk-test build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: out/*.apk
-
-  desktop:
-    name: Desktop installers
-    runs-on: ${{ matrix.os }}
-    permissions:
-      contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            artifact: windows
-          - os: macos-latest
-            artifact: macos
-          - os: ubuntu-latest
-            artifact: linux
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install Electron
-        run: npm install --no-save electron electron-builder
-      - name: Package installer
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-        run: npx electron-builder --publish never --config electron-builder.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: note-app-${{ matrix.artifact }}
-          path: dist/**
-      - name: Publish download links
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: note-app build ${{ github.run_number }}
-          body: Built by ZYRAXON-Pro
-          files: dist/*
-
-  web:
-    name: Web bundle
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Zip the site
-        run: |
-          # The UI may sit in its own directory or be pushed at the root.
-          if [ -d "projects/note-app" ]; then
-            cd "projects/note-app" && zip -qr ../site.zip .
-          else
-            zip -qr site.zip . -x '.git/*' '.github/*'
-          fi
-      - uses: actions/upload-artifact@v4
-        with:
-          name: note-app-web
-          path: site.zip
-      - name: Publish download links
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: note-app build ${{ github.run_number }}
-          body: Built by ZYRAXON-Pro
-          files: site.zip
