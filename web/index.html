@@ -1,1 +1,77 @@
-<!doctype html><html><head><title>APK Test App</title></head><body><h1>REAL APP CONTENT 12345</h1><p>unique-marker-zyraxon</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streakly — Habit Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-icon">🔥</span>
+          <h1>Streakly</h1>
+        </div>
+        <p class="tagline">Build habits. Keep streaks.</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Stats bar -->
+      <section class="stats">
+        <div class="stat-card">
+          <span class="stat-value" id="stat-habits">0</span>
+          <span class="stat-label">Habits</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-done">0</span>
+          <span class="stat-label">Done Today</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="stat-best">0</span>
+          <span class="stat-label">Best Streak</span>
+        </div>
+      </section>
+
+      <!-- Add habit form -->
+      <section class="add-section">
+        <form id="add-form" class="add-form">
+          <input
+            id="habit-name"
+            type="text"
+            placeholder="What habit do you want to build?"
+            maxlength="60"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn-add">+ Add Habit</button>
+        </form>
+      </section>
+
+      <!-- Habit list -->
+      <section class="habits-section">
+        <div class="habits-header">
+          <h2>Your Habits</h2>
+          <button id="clear-done" class="btn-ghost">Reset Today</button>
+        </div>
+        <ul id="habit-list" class="habit-list"></ul>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">🌱</div>
+          <p>No habits yet. Add your first one above!</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Streakly · Built with ZYRAXON-Pro</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
