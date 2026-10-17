@@ -1,9 +1,9 @@
 {
-  "name": "note-app",
-  "productName": "note-app",
+  "name": "apk-test",
+  "productName": "apk-test",
   "version": "1.0.0",
   "main": "main.js",
-  "description": "note-app — built by ZYRAXON-Pro",
+  "description": "apk-test — built by ZYRAXON-Pro",
   "author": {
     "name": "ZYRAXON-Pro",
     "email": "onlypowerai@zyraxon.lab"
