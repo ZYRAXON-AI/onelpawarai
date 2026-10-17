@@ -1,6 +1,6 @@
 {
-  "appId": "com.zyraxon.noteapp",
-  "productName": "note-app",
+  "appId": "com.zyraxon.apktest",
+  "productName": "apk-test",
   "directories": {
     "output": "dist",
     "app": "."
