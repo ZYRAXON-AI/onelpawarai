@@ -1,6 +1,6 @@
 {
-  "appId": "com.zyraxon.omgapp",
-  "productName": "OMG App",
+  "appId": "com.zyraxon.noteapp",
+  "productName": "note-app",
   "directories": {
     "output": "dist",
     "app": "."
