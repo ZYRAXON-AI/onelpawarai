@@ -23,16 +23,16 @@ jobs:
           yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
           "$SDK/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
       - name: Build signed APK
-        run: bash .zyraxon/build-apk.sh "OMG App" "com.omg.app" "apps/omg-app/public"
+        run: bash .zyraxon/build-apk.sh "note-app" "com.zyraxon.noteapp" "projects/note-app"
       - uses: actions/upload-artifact@v4
         with:
-          name: omg-app-apk
+          name: note-app-apk
           path: out/*.apk
       - name: Publish download links
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: OMG App build ${{ github.run_number }}
+          name: note-app build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: out/*.apk
 
@@ -64,12 +64,39 @@ jobs:
         run: npx electron-builder --publish never --config electron-builder.json
       - uses: actions/upload-artifact@v4
         with:
-          name: omg-app-${{ matrix.artifact }}
+          name: note-app-${{ matrix.artifact }}
           path: dist/**
       - name: Publish download links
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: OMG App build ${{ github.run_number }}
+          name: note-app build ${{ github.run_number }}
           body: Built by ZYRAXON-Pro
           files: dist/*
+
+  web:
+    name: Web bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Zip the site
+        run: |
+          # The UI may sit in its own directory or be pushed at the root.
+          if [ -d "projects/note-app" ]; then
+            cd "projects/note-app" && zip -qr ../site.zip .
+          else
+            zip -qr site.zip . -x '.git/*' '.github/*'
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: note-app-web
+          path: site.zip
+      - name: Publish download links
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: note-app build ${{ github.run_number }}
+          body: Built by ZYRAXON-Pro
+          files: site.zip
