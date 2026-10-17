@@ -2,707 +2,410 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>OMG App — সব প্ল্যাটফর্মের জন্য</title>
-<meta name="description" content="একটি সুন্দর, শক্তিশালী অ্যাপ — Android, Windows, macOS, Linux">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>নোট অ্যাপ — ZYRAXON</title>
+<meta name="theme-color" content="#6366f1">
 <style>
-  :root{--bg:#0a0a1a;--bg2:#12122a;--card:#18183a;--card2:#20204a;--accent:#6366f1;--accent2:#8b5cf6;--pink:#ec4899;--cyan:#06b6d4;--green:#10b981;--amber:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;}
-  *{font-family:'Hind Siliguri','Inter',sans-serif;margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-  body{background:radial-gradient(ellipse at top,#1e1b4b 0%,#0a0a1a 60%),radial-gradient(ellipse at bottom right,#312e81 0%,transparent 50%);}
-  .glass{background:rgba(24,24,58,0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(99,102,241,0.25);border-radius:18px;}
-  .glass-strong{background:rgba(24,24,58,0.85);backdrop-filter:blur(24px);border:1px solid rgba(99,102,241,0.35);border-radius:20px;}
-  .grad-text{background:linear-gradient(135deg,#818cf8,#ec4899,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .btn{transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(99,102,241,.35);}
-  .btn:active{transform:translateY(0);}
-  .card-hover{transition:all .3s ease;}
-  .card-hover:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.6);}
-  .pulse{animation:pulse 2s infinite;}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-  .float{animation:float 6s ease-in-out infinite;}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-  .shimmer{background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);background-size:200% 100%;animation:shimmer 3s infinite;}
-  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-  .orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;pointer-events:none;z-index:0;}
-  .tab-active{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;}
-  .scrollbar::-webkit-scrollbar{width:6px;}
-  .scrollbar::-webkit-scrollbar-thumb{background:rgba(99,102,241,.4);border-radius:3px;}
-  .toast{animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;}
-  @keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes toastOut{to{opacity:0;transform:translateY(-20px)}}
-  .modal-backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(8px);}
-  .grid-bg{background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);background-size:40px 40px;}
-  .neon{box-shadow:0 0 20px rgba(99,102,241,.4),inset 0 0 20px rgba(99,102,241,.1);}
-  .typing{border-right:2px solid #818cf8;animation:blink .8s infinite;}
-  @keyframes blink{50%{border-color:transparent}}
-  .rotate-slow{animation:rotate 20s linear infinite;}
-  @keyframes rotate{to{transform:rotate(360deg)}}
-  .bounce-in{animation:bounceIn .6s cubic-bezier(.68,-.55,.265,1.55);}
-  @keyframes bounceIn{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
-  input,textarea,select{background:rgba(32,32,74,.6);border:1px solid rgba(99,102,241,.3);color:var(--text);border-radius:12px;padding:10px 14px;outline:none;transition:.2s;}
-  input:focus,textarea:focus,select:focus{border-color:#818cf8;box-shadow:0 0 0 3px rgba(99,102,241,.2);}
-  .chip{padding:6px 14px;border-radius:999px;background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);cursor:pointer;transition:.2s;font-size:13px;}
-  .chip:hover{background:rgba(99,102,241,.3);}
-  .chip.active{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-color:transparent;}
-  .progress-bar{height:8px;background:rgba(99,102,241,.2);border-radius:4px;overflow:hidden;}
-  .progress-fill{height:100%;background:linear-gradient(90deg,#6366f1,#ec4899);transition:width .5s ease;}
-  .stat-card{background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(236,72,153,.05));border:1px solid rgba(99,102,241,.2);border-radius:16px;padding:20px;}
-  .mobile-nav{display:none;}
-  @media(max-width:768px){.mobile-nav{display:flex;}.desktop-nav{display:none;}}
-  .sidebar{transition:transform .3s ease;}
-  @media(max-width:768px){.sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}}
-  .kanban-col{min-height:200px;background:rgba(24,24,58,.4);border-radius:14px;padding:12px;}
-  .kanban-card{background:rgba(32,32,74,.6);border:1px solid rgba(99,102,241,.2);border-radius:10px;padding:10px;margin-bottom:8px;cursor:grab;transition:.2s;}
-  .kanban-card:hover{border-color:rgba(99,102,241,.5);}
-  .note-card{background:rgba(32,32,74,.5);border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:14px;transition:.2s;}
-  .note-card:hover{border-color:rgba(99,102,241,.5);transform:translateY(-2px);}
-  .chat-bubble-user{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:18px 18px 4px 18px;}
-  .chat-bubble-ai{background:rgba(32,32,74,.6);border:1px solid rgba(99,102,241,.2);border-radius:18px 18px 18px 4px;}
-  .glow-ring{box-shadow:0 0 0 2px rgba(99,102,241,.4),0 0 30px rgba(99,102,241,.3);}
-  .scanline{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(99,102,241,.03) 2px,rgba(99,102,241,.03) 4px);pointer-events:none;}
+  :root{
+    --bg:#0b0f1a;
+    --surface:#13192b;
+    --surface2:#1c2340;
+    --border:#2a3257;
+    --text:#eef2ff;
+    --muted:#9aa3c7;
+    --primary:#6366f1;
+    --primary2:#8b5cf6;
+    --accent:#22d3ee;
+    --danger:#ef4444;
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent}
+  body{overflow:hidden}
+  .app{display:flex;flex-direction:column;height:100vh;height:100dvh}
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,var(--primary),var(--primary2));box-shadow:var(--shadow);z-index:10;flex-shrink:0}
+  header h1{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+  header .actions{display:flex;gap:8px}
+  .btn{border:none;cursor:pointer;padding:8px 14px;border-radius:10px;font-weight:600;font-size:13px;transition:.15s;display:inline-flex;align-items:center;gap:6px;color:#fff;background:rgba(255,255,255,.15);backdrop-filter:blur(6px)}
+  .btn:hover{background:rgba(255,255,255,.25);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(135deg,#22c55e,#16a34a)}
+  .btn.danger{background:linear-gradient(135deg,#ef4444,#dc2626)}
+  .btn.ghost{background:transparent;color:var(--muted)}
+  .btn.ghost:hover{color:var(--text);background:rgba(255,255,255,.08)}
+
+  .layout{display:flex;flex:1;overflow:hidden}
+  .sidebar{width:300px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;transition:.25s}
+  .search{padding:12px;border-bottom:1px solid var(--border)}
+  .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text);outline:none;font-size:14px}
+  .search input:focus{border-color:var(--primary)}
+  .notes-list{flex:1;overflow-y:auto;padding:8px}
+  .note-item{padding:12px;border-radius:12px;margin-bottom:6px;cursor:pointer;border:1px solid transparent;transition:.15s;position:relative}
+  .note-item:hover{background:var(--surface2)}
+  .note-item.active{background:var(--surface2);border-color:var(--primary)}
+  .note-item .title{font-weight:600;font-size:14px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .note-item .preview{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .note-item .meta{font-size:10px;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between}
+  .note-item .pin{position:absolute;top:8px;right:8px;color:var(--warning);font-size:12px}
+  .empty-list{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+  .empty-list .icon{font-size:48px;margin-bottom:10px;opacity:.5}
+
+  .editor{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+  .editor-toolbar{display:flex;align-items:center;gap:6px;padding:10px 16px;border-bottom:1px solid var(--border);flex-wrap:wrap;background:var(--surface)}
+  .tool-btn{padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);cursor:pointer;font-size:13px;font-weight:600;transition:.15s}
+  .tool-btn:hover{border-color:var(--primary);color:var(--primary)}
+  .tool-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+  .color-picker{width:28px;height:28px;border-radius:6px;border:2px solid var(--border);cursor:pointer;padding:0;background:none}
+  .editor-body{flex:1;display:flex;flex-direction:column;overflow:hidden;padding:16px}
+  .title-input{width:100%;padding:12px 14px;border:none;background:transparent;color:var(--text);font-size:20px;font-weight:700;outline:none;border-bottom:1px solid var(--border);margin-bottom:8px}
+  .title-input::placeholder{color:var(--muted)}
+  .rich-editor{flex:1;padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:15px;line-height:1.7;overflow-y:auto;outline:none;min-height:200px}
+  .rich-editor:empty:before{content:attr(data-placeholder);color:var(--muted)}
+  .rich-editor h1,.rich-editor h2,.rich-editor h3{margin:12px 0 6px}
+  .rich-editor ul,.rich-editor ol{margin:8px 0 8px 22px}
+  .rich-editor blockquote{border-left:3px solid var(--primary);padding-left:12px;color:var(--muted);margin:8px 0}
+  .rich-editor code{background:var(--surface2);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:13px}
+  .rich-editor pre{background:var(--surface2);padding:12px;border-radius:8px;overflow-x:auto;margin:8px 0}
+  .tags-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .tag{padding:4px 10px;border-radius:20px;background:var(--surface2);color:var(--accent);font-size:11px;font-weight:600;border:1px solid var(--border)}
+  .tag input{background:transparent;border:none;color:var(--accent);outline:none;width:80px;font-size:11px}
+  .status-bar{display:flex;justify-content:space-between;padding:8px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);background:var(--surface);flex-shrink:0}
+
+  .fab{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 8px 24px rgba(99,102,241,.5);display:none;z-index:20}
+  @media (max-width:720px){
+    .sidebar{position:fixed;left:0;top:0;bottom:0;z-index:30;transform:translateX(-100%);width:85vw;max-width:320px}
+    .sidebar.open{transform:translateX(0)}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:25;display:none}
+    .overlay.open{display:block}
+    .fab{display:flex;align-items:center;justify-content:center}
+    .back-btn{display:inline-flex}
+  }
+  .back-btn{display:none}
+
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+  .modal.open{display:flex}
+  .modal-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;max-width:420px;width:100%;box-shadow:var(--shadow)}
+  .modal-card h3{margin-bottom:12px}
+  .modal-card p{color:var(--muted);font-size:13px;margin-bottom:16px;line-height:1.5}
+  .modal-actions{display:flex;gap:8px;justify-content:flex-end}
+
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);color:var(--text);padding:10px 18px;border-radius:10px;border:1px solid var(--border);font-size:13px;opacity:0;transition:.3s;z-index:100;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .stats{display:flex;gap:16px;padding:10px 16px;font-size:12px;color:var(--muted)}
+  .stats b{color:var(--text)}
+  .import-export{display:flex;gap:6px}
+
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-track{background:var(--surface)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--primary)}
 </style>
 </head>
-<body class="grid-bg">
-<div class="orb" style="width:400px;height:400px;background:#6366f1;top:-100px;left:-100px;"></div>
-<div class="orb" style="width:350px;height:350px;background:#ec4899;bottom:-80px;right:-80px;"></div>
-<div class="orb" style="width:300px;height:300px;background:#06b6d4;top:40%;right:10%;"></div>
-
-<div id="app" class="relative z-10 min-h-screen">
-  <!-- Top Bar -->
-  <header class="sticky top-0 z-40 glass border-b border-indigo-500/20">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-indigo-500/20">☰</button>
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/30">O</div>
-          <div>
-            <div class="font-bold text-lg leading-tight">OMG App</div>
-            <div class="text-xs text-slate-400">সব প্ল্যাটফর্মের জন্য · v1.0</div>
-          </div>
-        </div>
-      </div>
-      <nav class="desktop-nav items-center gap-1">
-        <button data-tab="home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">🏠 হোম</button>
-        <button data-tab="dashboard" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">📊 ড্যাশবোর্ড</button>
-        <button data-tab="tasks" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">✅ টাস্ক</button>
-        <button data-tab="notes" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">📝 নোট</button>
-        <button data-tab="chat" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">💬 চ্যাট</button>
-        <button data-tab="tools" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">🧰 টুলস</button>
-        <button data-tab="settings" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-500/20 transition">⚙️ সেটিংস</button>
-      </nav>
-      <div class="flex items-center gap-2">
-        <button id="themeBtn" class="p-2 rounded-lg hover:bg-indigo-500/20" title="থিম">🌙</button>
-        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 flex items-center justify-center font-bold text-sm">A</div>
-      </div>
+<body>
+<div class="app">
+  <header>
+    <h1>📝 নোট অ্যাপ</h1>
+    <div class="actions">
+      <button class="btn" id="exportBtn" title="রপ্তানি">⬇️ রপ্তানি</button>
+      <button class="btn" id="importBtn" title="আমদানি">⬆️ আমদানি</button>
+      <button class="btn primary" id="newNoteBtn">+ নতুন নোট</button>
     </div>
   </header>
-
-  <!-- Mobile sidebar -->
-  <aside id="sidebar" class="sidebar glass-strong w-72 p-4 md:hidden">
-    <div class="flex items-center justify-between mb-6">
-      <div class="font-bold text-lg grad-text">OMG App</div>
-      <button id="closeSidebar" class="p-2 rounded-lg hover:bg-indigo-500/20">✕</button>
-    </div>
-    <nav class="flex flex-col gap-1" id="mobileNav"></nav>
-  </aside>
-  <div id="overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" onclick="closeSidebar()"></div>
-
-  <!-- Main -->
-  <main class="max-w-7xl mx-auto px-4 py-6">
-    <!-- HOME -->
-    <section id="tab-home" class="tab-section">
-      <div class="text-center mb-10 bounce-in">
-        <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-sm mb-4">✨ নতুন সংস্করণ 1.0 এখন লাইভ</div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
-          <span class="grad-text">OMG App</span>
-        </h1>
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-6">একটি অ্যাপ — সব প্ল্যাটফর্মে। অ্যান্ড্রয়েড, উইন্ডোজ, ম্যাক, লিনাক্স। সব জায়গায় একই অভিজ্ঞতা।</p>
-        <div class="flex flex-wrap justify-center gap-3">
-          <button onclick="switchTab('dashboard')" class="btn px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/30">শুরু করুন →</button>
-          <button onclick="switchTab('tools')" class="btn px-6 py-3 rounded-xl glass font-semibold">🧰 টুলস দেখুন</button>
-        </div>
+  <div class="layout">
+    <div class="overlay" id="overlay"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="🔍 নোট খুঁজুন...">
       </div>
-
-      <!-- Platform badges -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-        <div class="glass card-hover p-5 text-center">
-          <div class="text-4xl mb-2 float">🤖</div>
-          <div class="font-bold">Android</div>
-          <div class="text-xs text-slate-400 mt-1">APK · Arm64</div>
-          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">✓ প্রস্তুত</div>
-        </div>
-        <div class="glass card-hover p-5 text-center">
-          <div class="text-4xl mb-2 float" style="animation-delay:.5s">🪟</div>
-          <div class="font-bold">Windows</div>
-          <div class="text-xs text-slate-400 mt-1">.exe · NSIS</div>
-          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">✓ প্রস্তুত</div>
-        </div>
-        <div class="glass card-hover p-5 text-center">
-          <div class="text-4xl mb-2 float" style="animation-delay:1s">🍎</div>
-          <div class="font-bold">macOS</div>
-          <div class="text-xs text-slate-400 mt-1">.dmg · Universal</div>
-          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">✓ প্রস্তুত</div>
-        </div>
-        <div class="glass card-hover p-5 text-center">
-          <div class="text-4xl mb-2 float" style="animation-delay:1.5s">🐧</div>
-          <div class="font-bold">Linux</div>
-          <div class="text-xs text-slate-400 mt-1">.deb · .AppImage</div>
-          <div class="mt-3 inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs">✓ প্রস্তুত</div>
-        </div>
+      <div class="notes-list" id="notesList"></div>
+    </aside>
+    <main class="editor">
+      <div class="editor-toolbar">
+        <button class="back-btn btn ghost" id="backBtn">← তালিকা</button>
+        <button class="tool-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+        <button class="tool-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+        <button class="tool-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+        <button class="tool-btn" data-cmd="strikeThrough" title="Strike">S̶</button>
+        <button class="tool-btn" data-cmd="h1" title="Heading 1">H1</button>
+        <button class="tool-btn" data-cmd="h2" title="Heading 2">H2</button>
+        <button class="tool-btn" data-cmd="ul" title="Bullet list">•</button>
+        <button class="tool-btn" data-cmd="ol" title="Numbered list">1.</button>
+        <button class="tool-btn" data-cmd="quote" title="Quote">❝</button>
+        <button class="tool-btn" data-cmd="code" title="Code">&lt;/&gt;</button>
+        <button class="tool-btn" data-cmd="hr" title="Divider">—</button>
+        <input type="color" class="color-picker" id="colorPicker" value="#6366f1" title="রঙ">
+        <button class="tool-btn" id="pinBtn" title="পিন">📌</button>
+        <button class="tool-btn" id="deleteBtn" title="মুছুন">🗑️</button>
       </div>
-
-      <!-- Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-        <div class="stat-card"><div class="text-3xl font-bold grad-text" id="statTasks">0</div><div class="text-sm text-slate-400 mt-1">মোট টাস্ক</div></div>
-        <div class="stat-card"><div class="text-3xl font-bold grad-text" id="statDone">0</div><div class="text-sm text-slate-400 mt-1">সম্পন্ন</div></div>
-        <div class="stat-card"><div class="text-3xl font-bold grad-text" id="statNotes">0</div><div class="text-sm text-slate-400 mt-1">নোট</div></div>
-        <div class="stat-card"><div class="text-3xl font-bold grad-text" id="statMsgs">0</div><div class="text-sm text-slate-400 mt-1">চ্যাট মেসেজ</div></div>
+      <div class="editor-body">
+        <input type="text" class="title-input" id="titleInput" placeholder="নোটের শিরোনাম...">
+        <div class="rich-editor" id="editor" contenteditable="true" data-placeholder="এখানে লিখুন... আপনার চিন্তা, আইডিয়া, কাজের তালিকা..."></div>
+        <div class="tags-row" id="tagsRow"></div>
       </div>
-
-      <!-- Feature cards -->
-      <h2 class="text-2xl font-bold mb-4">✨ ফিচারসমূহ</h2>
-      <div class="grid md:grid-cols-3 gap-4 mb-10">
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">📊</div><h3 class="font-bold mb-1">লাইভ ড্যাশবোর্ড</h3><p class="text-sm text-slate-400">রিয়েল-টাইম স্ট্যাটস, চার্ট আর প্রোগ্রেস ট্র্যাকিং।</p></div>
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">✅</div><h3 class="font-bold mb-1">টাস্ক ম্যানেজার</h3><p class="text-sm text-slate-400">কানবান বোর্ড দিয়ে টাস্ক সাজান, ড্র্যাগ করুন।</p></div>
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">📝</div><h3 class="font-bold mb-1">স্মার্ট নোট</h3><p class="text-sm text-slate-400">রঙিন নোট, ট্যাগ, সার্চ সহ পূর্ণ নোট সিস্টেম।</p></div>
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">💬</div><h3 class="font-bold mb-1">AI চ্যাট</h3><p class="text-sm text-slate-400">বুদ্ধিমান সহকারীর সাথে কথা বলুন।</p></div>
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">🧰</div><h3 class="font-bold mb-1">ইউটিলিটি টুলস</h3><p class="text-sm text-slate-400">ক্যালকুলেটর, টাইমার, কনভার্টার আরও অনেক কিছু।</p></div>
-        <div class="glass card-hover p-5"><div class="text-3xl mb-3">🎨</div><h3 class="font-bold mb-1">থিম কাস্টমাইজ</h3><p class="text-sm text-slate-400">ডার্ক/লাইট মোড, এক্সেন্ট কালার পরিবর্তন।</p></div>
+      <div class="status-bar">
+        <span id="wordCount">০ শব্দ</span>
+        <span id="lastSaved">সংরক্ষিত হয়নি</span>
+        <span id="noteCount">০ টি নোট</span>
       </div>
-
-      <!-- Quick actions -->
-      <div class="glass p-6">
-        <h3 class="font-bold mb-4">⚡ দ্রুত কাজ</h3>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="quickAction('task')" class="chip">+ নতুন টাস্ক</button>
-          <button onclick="quickAction('note')" class="chip">+ নতুন নোট</button>
-          <button onclick="quickAction('msg')" class="chip">💬 চ্যাট খুলুন</button>
-          <button onclick="quickAction('calc')" class="chip">🧮 ক্যালকুলেটর</button>
-          <button onclick="quickAction('timer')" class="chip">⏱️ টাইমার</button>
-          <button onclick="exportData()" class="chip">💾 ডাটা এক্সপোর্ট</button>
-          <button onclick="importData()" class="chip">📥 ডাটা ইমপোর্ট</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section id="tab-dashboard" class="tab-section hidden">
-      <h2 class="text-3xl font-bold mb-6 grad-text">📊 ড্যাশবোর্ড</h2>
-      <div class="grid md:grid-cols-3 gap-4 mb-6">
-        <div class="glass p-5">
-          <div class="text-sm text-slate-400 mb-2">টাস্ক প্রোগ্রেস</div>
-          <div class="text-3xl font-bold mb-3" id="dashProgress">0%</div>
-          <div class="progress-bar"><div class="progress-fill" id="dashProgressFill" style="width:0%"></div></div>
-          <div class="text-xs text-slate-400 mt-2" id="dashProgressText">0 / 0 সম্পন্ন</div>
-        </div>
-        <div class="glass p-5">
-          <div class="text-sm text-slate-400 mb-2">আজকের তারিখ</div>
-          <div class="text-2xl font-bold" id="dashDate"></div>
-          <div class="text-sm text-slate-400 mt-1" id="dashTime"></div>
-        </div>
-        <div class="glass p-5">
-          <div class="text-sm text-slate-400 mb-2">সিস্টেম স্ট্যাটাস</div>
-          <div class="flex items-center gap-2 mb-2"><span class="w-2 h-2 rounded-full bg-green-400 pulse"></span><span class="text-sm">অনলাইন</span></div>
-          <div class="text-xs text-slate-400">CPU: <span id="cpuVal">--</span>% · RAM: <span id="ramVal">--</span>%</div>
-          <div class="progress-bar mt-2"><div class="progress-fill" id="cpuBar" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">📈 সাপ্তাহিক কার্যকলাপ</h3>
-          <div class="flex items-end gap-2 h-40" id="weekChart"></div>
-        </div>
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">🏷️ টাস্ক ক্যাটেগরি</h3>
-          <div id="catChart" class="space-y-2"></div>
-        </div>
-      </div>
-      <div class="glass p-5 mt-4">
-        <h3 class="font-bold mb-3">🔔 সাম্প্রতিক কার্যকলাপ</h3>
-        <div id="activityLog" class="space-y-2 max-h-60 overflow-y-auto scrollbar"></div>
-      </div>
-    </section>
-
-    <!-- TASKS -->
-    <section id="tab-tasks" class="tab-section hidden">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <h2 class="text-3xl font-bold grad-text">✅ টাস্ক ম্যানেজার</h2>
-        <button onclick="openTaskModal()" class="btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold">+ নতুন টাস্ক</button>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <button class="filter-chip chip active" data-filter="all">সব</button>
-        <button class="filter-chip chip" data-filter="todo">টু-ডু</button>
-        <button class="filter-chip chip" data-filter="doing">চলমান</button>
-        <button class="filter-chip chip" data-filter="done">সম্পন্ন</button>
-        <input id="taskSearch" placeholder="🔍 টাস্ক খুঁজুন..." class="ml-auto" style="width:220px">
-      </div>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="kanban-col">
-          <div class="flex items-center justify-between mb-3"><h3 class="font-bold">📋 টু-ডু</h3><span class="text-xs bg-indigo-500/20 px-2 py-1 rounded-full" id="countTodo">0</span></div>
-          <div id="colTodo" class="space-y-2"></div>
-        </div>
-        <div class="kanban-col">
-          <div class="flex items-center justify-between mb-3"><h3 class="font-bold">🔄 চলমান</h3><span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full" id="countDoing">0</span></div>
-          <div id="colDoing" class="space-y-2"></div>
-        </div>
-        <div class="kanban-col">
-          <div class="flex items-center justify-between mb-3"><h3 class="font-bold">✅ সম্পন্ন</h3><span class="text-xs bg-green-500/20 px-2 py-1 rounded-full" id="countDone">0</span></div>
-          <div id="colDone" class="space-y-2"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOTES -->
-    <section id="tab-notes" class="tab-section hidden">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <h2 class="text-3xl font-bold grad-text">📝 স্মার্ট নোট</h2>
-        <button onclick="openNoteModal()" class="btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold">+ নতুন নোট</button>
-      </div>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <input id="noteSearch" placeholder="🔍 নোট খুঁজুন..." style="width:260px">
-        <div class="flex gap-2 ml-auto" id="noteTags"></div>
-      </div>
-      <div id="notesGrid" class="grid md:grid-cols-3 gap-4"></div>
-    </section>
-
-    <!-- CHAT -->
-    <section id="tab-chat" class="tab-section hidden">
-      <h2 class="text-3xl font-bold mb-4 grad-text">💬 AI চ্যাট সহকারী</h2>
-      <div class="glass p-4 h-[70vh] flex flex-col">
-        <div id="chatMessages" class="flex-1 overflow-y-auto scrollbar space-y-3 mb-3"></div>
-        <div class="flex gap-2">
-          <input id="chatInput" placeholder="মেসেজ লিখুন..." class="flex-1" onkeydown="if(event.key==='Enter')sendChat()">
-          <button onclick="sendChat()" class="btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold">পাঠান</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOOLS -->
-    <section id="tab-tools" class="tab-section hidden">
-      <h2 class="text-3xl font-bold mb-6 grad-text">🧰 ইউটিলিটি টুলস</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="toolsGrid"></div>
-    </section>
-
-    <!-- SETTINGS -->
-    <section id="tab-settings" class="tab-section hidden">
-      <h2 class="text-3xl font-bold mb-6 grad-text">⚙️ সেটিংস</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">🎨 থিম</h3>
-          <label class="block mb-2 text-sm">এক্সেন্ট কালার</label>
-          <div class="flex gap-2 mb-4">
-            <button class="w-8 h-8 rounded-full bg-indigo-500 accent-btn" data-color="#6366f1"></button>
-            <button class="w-8 h-8 rounded-full bg-pink-500 accent-btn" data-color="#ec4899"></button>
-            <button class="w-8 h-8 rounded-full bg-cyan-500 accent-btn" data-color="#06b6d4"></button>
-            <button class="w-8 h-8 rounded-full bg-green-500 accent-btn" data-color="#10b981"></button>
-            <button class="w-8 h-8 rounded-full bg-amber-500 accent-btn" data-color="#f59e0b"></button>
-          </div>
-          <label class="block mb-2 text-sm">মোড</label>
-          <select id="modeSelect" class="w-full"><option value="dark">ডার্ক</option><option value="light">লাইট</option></select>
-        </div>
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">💾 ডাটা</h3>
-          <button onclick="exportData()" class="btn w-full mb-2 px-4 py-2 rounded-xl glass">এক্সপোর্ট JSON</button>
-          <button onclick="importData()" class="btn w-full mb-2 px-4 py-2 rounded-xl glass">ইমপোর্ট JSON</button>
-          <button onclick="clearAllData()" class="btn w-full px-4 py-2 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300">সব ডাটা মুছুন</button>
-        </div>
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">ℹ️ অ্যাপ তথ্য</h3>
-          <div class="text-sm space-y-1 text-slate-300">
-            <div>নাম: OMG App</div>
-            <div>সংস্করণ: 1.0.0</div>
-            <div>প্ল্যাটফর্ম: Android · Windows · macOS · Linux · Web</div>
-            <div>তৈরি: ZYRAXON-Pro · Only Power AI</div>
-            <div>মালিক: OMG — Alex Deluar Husen Sayidi</div>
-          </div>
-        </div>
-        <div class="glass p-5">
-          <h3 class="font-bold mb-3">🔔 নোটিফিকেশন</h3>
-          <label class="flex items-center gap-2 mb-2"><input type="checkbox" id="notifSound" checked> সাউন্ড</label>
-          <label class="flex items-center gap-2 mb-2"><input type="checkbox" id="notifDesktop" checked> ডেস্কটপ নোটিফিকেশন</label>
-          <label class="flex items-center gap-2"><input type="checkbox" id="notifDaily" checked> দৈনিক সারসংক্ষেপ</label>
-        </div>
-      </div>
-    </section>
-  </main>
+    </main>
+  </div>
+  <button class="fab" id="fabBtn">+</button>
 </div>
 
-<!-- Task Modal -->
-<div id="taskModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
-  <div class="glass-strong w-full max-w-lg mx-4 p-6 bounce-in">
-    <h3 class="text-xl font-bold mb-4">নতুন টাস্ক</h3>
-    <input id="taskTitle" placeholder="টাস্কের শিরোনাম" class="w-full mb-3">
-    <textarea id="taskDesc" placeholder="বিবরণ (ঐচ্ছিক)" class="w-full mb-3" rows="3"></textarea>
-    <div class="grid grid-cols-2 gap-3 mb-3">
-      <select id="taskPriority"><option value="low">নিম্ন</option><option value="medium" selected>মধ্যম</option><option value="high">উচ্চ</option></select>
-      <select id="taskCategory"><option value="general">সাধারণ</option><option value="work">কাজ</option><option value="personal">ব্যক্তিগত</option><option value="study">পড়াশোনা</option><option value="health">স্বাস্থ্য</option></select>
-    </div>
-    <input id="taskDue" type="date" class="w-full mb-4">
-    <div class="flex gap-2 justify-end">
-      <button onclick="closeTaskModal()" class="px-4 py-2 rounded-xl glass">বাতিল</button>
-      <button onclick="saveTask()" class="btn px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold">সংরক্ষণ</button>
+<div class="modal" id="confirmModal">
+  <div class="modal-card">
+    <h3 id="modalTitle">নিশ্চিত?</h3>
+    <p id="modalMsg">এই নোটটি মুছে ফেলবেন?</p>
+    <div class="modal-actions">
+      <button class="btn ghost" id="modalCancel">বাতিল</button>
+      <button class="btn danger" id="modalConfirm">মুছুন</button>
     </div>
   </div>
 </div>
 
-<!-- Note Modal -->
-<div id="noteModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
-  <div class="glass-strong w-full max-w-lg mx-4 p-6 bounce-in">
-    <h3 class="text-xl font-bold mb-4">নতুন নোট</h3>
-    <input id="noteTitle" placeholder="শিরোনাম" class="w-full mb-3">
-    <textarea id="noteBody" placeholder="নোট লিখুন..." class="w-full mb-3" rows="5"></textarea>
-    <input id="noteTag" placeholder="ট্যাগ (কমা দিয়ে)" class="w-full mb-4">
-    <div class="flex gap-2 justify-end">
-      <button onclick="closeNoteModal()" class="px-4 py-2 rounded-xl glass">বাতিল</button>
-      <button onclick="saveNote()" class="btn px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold">সংরক্ষণ</button>
-    </div>
-  </div>
-</div>
+<input type="file" id="fileInput" accept=".json" style="display:none">
 
-<!-- Toast container -->
-<div id="toastContainer" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ============ STATE ============
-const STATE = { tasks:[], notes:[], messages:[], activity:[], settings:{theme:'dark',accent:'#6366f1'} };
-const STORAGE_KEY = 'omg-app-data-v1';
+const STORAGE_KEY = 'zyraxon_notes_v1';
+let notes = [];
+let activeId = null;
+let saveTimer = null;
 
-function loadState(){
-  try{ const raw = localStorage.getItem(STORAGE_KEY); if(raw){ const d=JSON.parse(raw); Object.assign(STATE,d); } }catch(e){}
-  if(!STATE.tasks) STATE.tasks=[];
-  if(!STATE.notes) STATE.notes=[];
-  if(!STATE.messages) STATE.messages=[];
-  if(!STATE.activity) STATE.activity=[];
-  if(!STATE.settings) STATE.settings={theme:'dark',accent:'#6366f1'};
+const $ = (s)=>document.querySelector(s);
+const $$ = (s)=>document.querySelectorAll(s);
+
+function uid(){return 'n_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
+function now(){return new Date().toISOString()}
+function fmtDate(iso){const d=new Date(iso);return d.toLocaleDateString('bn-BD',{day:'numeric',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('bn-BD',{hour:'2-digit',minute:'2-digit'})}
+
+function loadNotes(){
+  try{notes=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch(e){notes=[]}
+  if(!Array.isArray(notes))notes=[];
 }
-function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); }catch(e){} }
-function logActivity(text){ STATE.activity.unshift({text, time:new Date().toLocaleTimeString('bn-BD')}); if(STATE.activity.length>50) STATE.activity.pop(); saveState(); }
+function saveNotes(){localStorage.setItem(STORAGE_KEY,JSON.stringify(notes))}
 
-// ============ TABS ============
-const TABS = ['home','dashboard','tasks','notes','chat','tools','settings'];
-function switchTab(name){
-  TABS.forEach(t=>{
-    const s=document.getElementById('tab-'+t); if(s) s.classList.toggle('hidden', t!==name);
+function createNote(){
+  const n={id:uid(),title:'',content:'',pinned:false,tags:[],created:now(),updated:now(),color:'#6366f1'};
+  notes.unshift(n);
+  activeId=n.id;
+  saveNotes();
+  renderList();
+  openNote(n.id);
+  toast('নতুন নোট তৈরি হয়েছে');
+}
+
+function openNote(id){
+  activeId=id;
+  const n=notes.find(x=>x.id===id);
+  if(!n)return;
+  $('#titleInput').value=n.title;
+  $('#editor').innerHTML=n.content||'';
+  $('#colorPicker').value=n.color||'#6366f1';
+  renderTags(n);
+  renderList();
+  updateStatus();
+  if(window.innerWidth<=720){$('#sidebar').classList.remove('open');$('#overlay').classList.remove('open')}
+}
+
+function updateActive(){
+  const n=notes.find(x=>x.id===activeId);
+  if(!n)return;
+  n.title=$('#titleInput').value;
+  n.content=$('#editor').innerHTML;
+  n.color=$('#colorPicker').value;
+  n.updated=now();
+  saveNotes();
+  renderList(true);
+  updateStatus();
+}
+
+function deleteNote(id){
+  notes=notes.filter(x=>x.id!==id);
+  if(activeId===id){activeId=notes.length?notes[0].id:null}
+  saveNotes();
+  renderList();
+  if(activeId)openNote(activeId); else clearEditor();
+  toast('নোট মুছে ফেলা হয়েছে');
+}
+
+function clearEditor(){
+  $('#titleInput').value='';
+  $('#editor').innerHTML='';
+  $('#tagsRow').innerHTML='';
+}
+
+function togglePin(){
+  const n=notes.find(x=>x.id===activeId);
+  if(!n)return;
+  n.pinned=!n.pinned;
+  n.updated=now();
+  saveNotes();
+  renderList();
+  toast(n.pinned?'📌 পিন করা হয়েছে':'পিন সরানো হয়েছে');
+}
+
+function renderTags(n){
+  const row=$('#tagsRow');
+  row.innerHTML='';
+  (n.tags||[]).forEach((t,i)=>{
+    const span=document.createElement('span');span.className='tag';span.textContent=t+' ✕';
+    span.onclick=()=>{n.tags.splice(i,1);saveNotes();renderTags(n);renderList(true)};
+    row.appendChild(span);
   });
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('tab-active', b.dataset.tab===name));
-  if(name==='dashboard') renderDashboard();
-  if(name==='tasks') renderTasks();
-  if(name==='notes') renderNotes();
-  if(name==='chat') renderChat();
-  if(name==='tools') renderTools();
-  closeSidebar();
-}
-function quickAction(a){
-  if(a==='task') openTaskModal();
-  else if(a==='note') openNoteModal();
-  else if(a==='msg') switchTab('chat');
-  else if(a==='calc') openTool('calc');
-  else if(a==='timer') openTool('timer');
+  const inp=document.createElement('input');inp.type='text';inp.placeholder='+ ট্যাগ';inp.style.background='transparent';inp.style.border='none';inp.style.color='var(--accent)';inp.style.outline='none';inp.style.width='90px';inp.style.fontSize='11px';
+  inp.onkeydown=e=>{if(e.key==='Enter'&&inp.value.trim()){n.tags.push(inp.value.trim());inp.value='';saveNotes();renderTags(n);renderList(true)}};
+  const wrap=document.createElement('span');wrap.className='tag';wrap.style.background='transparent';wrap.style.border='1px dashed var(--border)';wrap.appendChild(inp);
+  row.appendChild(wrap);
 }
 
-// ============ SIDEBAR ============
-function openSidebar(){ document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.remove('hidden'); }
-function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.add('hidden'); }
-document.getElementById('menuBtn').onclick=openSidebar;
-document.getElementById('closeSidebar').onclick=closeSidebar;
-// mobile nav
-const mobileNav=document.getElementById('mobileNav');
-TABS.forEach(t=>{
-  const labels={home:'🏠 হোম',dashboard:'📊 ড্যাশবোর্ড',tasks:'✅ টাস্ক',notes:'📝 নোট',chat:'💬 চ্যাট',tools:'🧰 টুলস',settings:'⚙️ সেটিংস'};
-  const b=document.createElement('button'); b.className='px-4 py-3 rounded-lg text-left hover:bg-indigo-500/20 transition'; b.textContent=labels[t]; b.onclick=()=>switchTab(t); mobileNav.appendChild(b);
-});
-document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
-
-// ============ TASKS ============
-let editingTask=null;
-function openTaskModal(){ document.getElementById('taskModal').classList.remove('hidden'); document.getElementById('taskModal').classList.add('flex'); }
-function closeTaskModal(){ document.getElementById('taskModal').classList.add('hidden'); document.getElementById('taskModal').classList.remove('flex'); document.getElementById('taskTitle').value=''; document.getElementById('taskDesc').value=''; }
-function saveTask(){
-  const title=document.getElementById('taskTitle').value.trim();
-  if(!title){ toast('শিরোনাম লিখুন','error'); return; }
-  const t={id:Date.now(), title, desc:document.getElementById('taskDesc').value, priority:document.getElementById('taskPriority').value, category:document.getElementById('taskCategory').value, due:document.getElementById('taskDue').value, status:'todo', created:Date.now()};
-  STATE.tasks.push(t); saveState(); logActivity('নতুন টাস্ক যোগ: '+title);
-  closeTaskModal(); renderTasks(); updateStats(); toast('টাস্ক যোগ হয়েছে','success');
-}
-function moveTask(id,status){
-  const t=STATE.tasks.find(x=>x.id===id); if(!t) return;
-  t.status=status; saveState(); logActivity('টাস্ক স্ট্যাটাস পরিবর্তন: '+t.title);
-  renderTasks(); updateStats();
-}
-function deleteTask(id){
-  const t=STATE.tasks.find(x=>x.id===id); STATE.tasks=STATE.tasks.filter(x=>x.id!==id); saveState(); logActivity('টাস্ক মুছে ফেলা: '+(t?t.title:''));
-  renderTasks(); updateStats(); toast('টাস্ক মুছে ফেলা হয়েছে','info');
-}
-function priorityColor(p){ return p==='high'?'#ef4444':p==='medium'?'#f59e0b':'#10b981'; }
-function renderTasks(){
-  const q=(document.getElementById('taskSearch')?.value||'').toLowerCase();
-  const filter=document.querySelector('.filter-chip.active')?.dataset.filter||'all';
-  ['Todo','Doing','Done'].forEach(c=>document.getElementById('col'+c).innerHTML='');
-  let counts={todo:0,doing:0,done:0};
-  STATE.tasks.filter(t=>!q||t.title.toLowerCase().includes(q)|| (t.desc||'').toLowerCase().includes(q)).forEach(t=>{
-    if(filter!=='all' && t.status!==filter) return;
-    counts[t.status]++;
-    const el=document.createElement('div'); el.className='kanban-card';
-    el.innerHTML=`
-      <div class="flex items-start justify-between gap-2">
-        <div class="font-semibold text-sm">${escapeHtml(t.title)}</div>
-        <button onclick="deleteTask(${t.id})" class="text-slate-500 hover:text-red-400 text-xs">✕</button>
-      </div>
-      ${t.desc?`<div class="text-xs text-slate-400 mt-1">${escapeHtml(t.desc)}</div>`:''}
-      <div class="flex items-center gap-2 mt-2 flex-wrap">
-        <span class="text-xs px-2 py-0.5 rounded-full" style="background:${priorityColor(t.priority)}22;color:${priorityColor(t.priority)}">${t.priority}</span>
-        <span class="text-xs text-slate-500">${t.category}</span>
-        ${t.due?`<span class="text-xs text-slate-500">📅 ${t.due}</span>`:''}
-      </div>
-      <div class="flex gap-1 mt-2">
-        ${t.status!=='todo'?`<button onclick="moveTask(${t.id},'todo')" class="text-xs px-2 py-1 rounded bg-slate-700/50 hover:bg-slate-600">← টু-ডু</button>`:''}
-        ${t.status!=='doing'?`<button onclick="moveTask(${t.id},'doing')" class="text-xs px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300">চলমান</button>`:''}
-        ${t.status!=='done'?`<button onclick="moveTask(${t.id},'done')" class="text-xs px-2 py-1 rounded bg-green-500/20 hover:bg-green-500/30 text-green-300">সম্পন্ন →</button>`:''}
-      </div>`;
-    const col = t.status==='todo'?'colTodo':t.status==='doing'?'colDoing':'colDone';
-    document.getElementById(col).appendChild(el);
+function renderList(keepScroll){
+  const list=$('#notesList');
+  const q=$('#searchInput').value.toLowerCase().trim();
+  let filtered=notes.filter(n=>{
+    if(!q)return true;
+    return (n.title||'').toLowerCase().includes(q)||(n.content||'').toLowerCase().replace(/<[^>]*>/g,'').includes(q)||(n.tags||[]).some(t=>t.toLowerCase().includes(q));
   });
-  document.getElementById('countTodo').textContent=counts.todo;
-  document.getElementById('countDoing').textContent=counts.doing;
-  document.getElementById('countDone').textContent=counts.done;
-}
-document.querySelectorAll('.filter-chip').forEach(c=>c.onclick=()=>{ document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); renderTasks(); });
-document.getElementById('taskSearch')?.addEventListener('input', renderTasks);
-
-// ============ NOTES ============
-function openNoteModal(){ document.getElementById('noteModal').classList.remove('hidden'); document.getElementById('noteModal').classList.add('flex'); }
-function closeNoteModal(){ document.getElementById('noteModal').classList.add('hidden'); document.getElementById('noteModal').classList.remove('flex'); document.getElementById('noteTitle').value=''; document.getElementById('noteBody').value=''; document.getElementById('noteTag').value=''; }
-function saveNote(){
-  const title=document.getElementById('noteTitle').value.trim();
-  const body=document.getElementById('noteBody').value.trim();
-  if(!title && !body){ toast('কিছু লিখুন','error'); return; }
-  const n={id:Date.now(), title:title||'শিরোনামহীন', body, tags:document.getElementById('noteTag').value.split(',').map(x=>x.trim()).filter(Boolean), color:['#6366f1','#ec4899','#06b6d4','#10b981','#f59e0b'][Math.floor(Math.random()*5)], created:Date.now()};
-  STATE.notes.push(n); saveState(); logActivity('নতুন নোট: '+n.title);
-  closeNoteModal(); renderNotes(); updateStats(); toast('নোট সংরক্ষিত','success');
-}
-function deleteNote(id){ STATE.notes=STATE.notes.filter(x=>x.id!==id); saveState(); renderNotes(); updateStats(); toast('নোট মুছে ফেলা হয়েছে','info'); }
-function renderNotes(){
-  const q=(document.getElementById('noteSearch')?.value||'').toLowerCase();
-  const grid=document.getElementById('notesGrid'); grid.innerHTML='';
-  const tagSet=new Set(); STATE.notes.forEach(n=>n.tags.forEach(t=>tagSet.add(t)));
-  const tagBar=document.getElementById('noteTags'); tagBar.innerHTML='';
-  tagBar.appendChild(makeChip('সব',''));
-  tagSet.forEach(t=>tagBar.appendChild(makeChip(t,t)));
-  STATE.notes.filter(n=>!q||n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)).forEach(n=>{
-    const el=document.createElement('div'); el.className='note-card'; el.style.borderLeft='3px solid '+n.color;
-    el.innerHTML=`
-      <div class="flex items-start justify-between gap-2">
-        <h3 class="font-bold">${escapeHtml(n.title)}</h3>
-        <button onclick="deleteNote(${n.id})" class="text-slate-500 hover:text-red-400 text-xs">✕</button>
-      </div>
-      <p class="text-sm text-slate-300 mt-2 whitespace-pre-wrap">${escapeHtml(n.body)}</p>
-      <div class="flex flex-wrap gap-1 mt-3">${n.tags.map(t=>`<span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300">#${escapeHtml(t)}</span>`).join('')}</div>
-      <div class="text-xs text-slate-500 mt-2">${new Date(n.created).toLocaleDateString('bn-BD')}</div>`;
-    grid.appendChild(el);
+  filtered.sort((a,b)=>(b.pinned-a.pinned)||(new Date(b.updated)-new Date(a.updated)));
+  const scroll=list.scrollTop;
+  list.innerHTML='';
+  if(filtered.length===0){list.innerHTML='<div class="empty-list"><div class="icon">📝</div>'+ (q?'কোনো নোট পাওয়া যায়নি':'এখনো কোনো নোট নেই<br>নতুন নোট তৈরি করুন')+'</div>';return}
+  filtered.forEach(n=>{
+    const div=document.createElement('div');
+    div.className='note-item'+(n.id===activeId?' active':'');
+    const title=n.title||'শিরোনামহীন নোট';
+    const preview=(n.content||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,60)||'কোনো কন্টেন্ট নেই';
+    div.innerHTML=(n.pinned?'<span class="pin">📌</span>':'')+
+      '<div class="title">'+escapeHtml(title)+'</div>'+
+      '<div class="preview">'+escapeHtml(preview)+'</div>'+
+      '<div class="meta"><span>'+fmtDate(n.updated)+'</span><span>'+ (n.tags||[]).length +' ট্যাগ</span></div>';
+    div.onclick=()=>openNote(n.id);
+    list.appendChild(div);
   });
-  if(!STATE.notes.length) grid.innerHTML='<div class="col-span-3 text-center text-slate-400 py-10">কোনো নোট নেই। নতুন নোট তৈরি করুন!</div>';
+  if(keepScroll)list.scrollTop=scroll;
 }
-function makeChip(label,val){ const b=document.createElement('button'); b.className='chip text-xs'; b.textContent=label; b.onclick=()=>{ document.getElementById('noteSearch').value=val; renderNotes(); }; return b; }
-document.getElementById('noteSearch')?.addEventListener('input', renderNotes);
 
-// ============ CHAT ============
-const AI_REPLIES = [
-  "আমি আপনার সহকারী! কীভাবে সাহায্য করতে পারি? 😊",
-  "চমৎকার প্রশ্ন! আমি এটা নিয়ে ভাবছি...",
-  "আপনার টাস্ক লিস্ট দেখে মনে হচ্ছে আপনি ব্যস্ত আছেন। কোনটা আগে করবেন?",
-  "মনে রাখবেন, প্রতিদিন একটু একটু করে এগোলেই বড় লক্ষ্য পূরণ হয়। 💪",
-  "আপনার নোটগুলো দারুণ! নতুন কিছু যোগ করতে চান?",
-  "আমি এখানে আছি আপনার সব প্রশ্নের উত্তর দিতে। বলুন!",
-  "ফোকাস রাখুন, আপনি পারবেন! 🚀",
-  "আজকের দিনটি আপনার জন্য শুভ হোক। ✨",
-];
-function sendChat(){
-  const inp=document.getElementById('chatInput'); const text=inp.value.trim(); if(!text) return;
-  STATE.messages.push({role:'user',text,time:Date.now()}); inp.value='';
-  renderChat();
-  setTimeout(()=>{
-    const reply=AI_REPLIES[Math.floor(Math.random()*AI_REPLIES.length)];
-    STATE.messages.push({role:'ai',text:reply,time:Date.now()});
-    renderChat(); logActivity('চ্যাট মেসেজ পাঠানো');
-    updateStats();
-  },600+Math.random()*800);
-  saveState(); updateStats();
+function escapeHtml(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function updateStatus(){
+  const n=notes.find(x=>x.id===activeId);
+  const text=($('#editor').innerText||'').trim();
+  const words=text?text.split(/\s+/).length:0;
+  $('#wordCount').textContent=toBn(words)+' শব্দ';
+  $('#noteCount').textContent=toBn(notes.length)+' টি নোট';
+  if(n)$('#lastSaved').textContent='সর্বশেষ সংরক্ষণ: '+fmtDate(n.updated);
 }
-function renderChat(){
-  const box=document.getElementById('chatMessages'); box.innerHTML='';
-  if(!STATE.messages.length){
-    box.innerHTML='<div class="text-center text-slate-400 py-10">👋 হ্যালো! আমি আপনার AI সহকারী। কিছু জিজ্ঞাসা করুন।</div>';
-    return;
+
+function toBn(num){return String(num).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d])}
+
+function toast(msg){
+  const t=$('#toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function execCmd(cmd){
+  const editor=$('#editor');
+  editor.focus();
+  switch(cmd){
+    case 'h1': document.execCommand('formatBlock',false,'h1');break;
+    case 'h2': document.execCommand('formatBlock',false,'h2');break;
+    case 'ul': document.execCommand('insertUnorderedList');break;
+    case 'ol': document.execCommand('insertOrderedList');break;
+    case 'quote': document.execCommand('formatBlock',false,'blockquote');break;
+    case 'code': 
+      const sel=window.getSelection();
+      if(sel.rangeCount){const range=sel.getRangeAt(0);const code=document.createElement('code');range.surroundContents(code)};break;
+    case 'hr': document.execCommand('insertHorizontalRule');break;
+    default: document.execCommand(cmd);
   }
-  STATE.messages.forEach(m=>{
-    const el=document.createElement('div'); el.className='flex '+(m.role==='user'?'justify-end':'justify-start');
-    el.innerHTML=`<div class="${m.role==='user'?'chat-bubble-user':'chat-bubble-ai'} px-4 py-2.5 max-w-[75%] text-sm">${escapeHtml(m.text)}<div class="text-[10px] opacity-60 mt-1">${new Date(m.time).toLocaleTimeString('bn-BD')}</div></div>`;
-    box.appendChild(el);
-  });
-  box.scrollTop=box.scrollHeight;
+  updateActive();
 }
 
-// ============ TOOLS ============
-const TOOLS = [
-  {id:'calc',name:'ক্যালকুলেটর',icon:'🧮',desc:'বেসিক গণনা'},
-  {id:'timer',name:'টাইমার',icon:'⏱️',desc:'কাউন্টডাউন'},
-  {id:'stopwatch',name:'স্টপওয়াচ',icon:'⏲️',desc:'সময় মাপুন'},
-  {id:'bmi',name:'BMI ক্যালকুলেটর',icon:'⚖️',desc:'BMI হিসাব'},
-  {id:'unit',name:'ইউনিট কনভার্টার',icon:'🔄',desc:'দৈর্ঘ্য/ওজন/তাপমাত্রা'},
-  {id:'password',name:'পাসওয়ার্ড জেনারেটর',icon:'🔐',desc:'শক্তিশালী পাসওয়ার্ড'},
-  {id:'color',name:'কালার পিকার',icon:'🎨',desc:'HEX/RGB'},
-  {id:'qrcode',name:'QR কোড',icon:'📱',desc:'টেক্সট থেকে QR'},
-  {id:'notes',name:'র‍্যান্ডম নাম্বার',icon:'🎲',desc:'র‍্যান্ডম'},
-  {id:'pomodoro',name:'পমোডোরো',icon:'🍅',desc:'২৫/৫ মিনিট'},
-];
-let activeTool=null;
-function renderTools(){
-  const g=document.getElementById('toolsGrid'); g.innerHTML='';
-  TOOLS.forEach(t=>{
-    const c=document.createElement('div'); c.className='glass card-hover p-5 cursor-pointer'; c.onclick=()=>openTool(t.id);
-    c.innerHTML=`<div class="text-4xl mb-2">${t.icon}</div><h3 class="font-bold">${t.name}</h3><p class="text-xs text-slate-400 mt-1">${t.desc}</p>`;
-    g.appendChild(c);
-  });
-}
-function openTool(id){ activeTool=id; showModal(toolHTML(id)); }
-function toolHTML(id){
-  if(id==='calc') return `<h3 class="text-xl font-bold mb-4">🧮 ক্যালকুলেটর</h3>
-    <input id="calcExpr" class="w-full mb-3" placeholder="যেমন: 2+3*4">
-    <button onclick="calcRun()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">হিসাব করুন</button>
-    <div id="calcRes" class="text-2xl font-bold grad-text"></div>`;
-  if(id==='timer') return `<h3 class="text-xl font-bold mb-4">⏱️ টাইমার</h3>
-    <input id="timerMin" type="number" value="5" class="w-full mb-3" placeholder="মিনিট">
-    <div class="flex gap-2 mb-3">
-      <button onclick="startTimer()" class="btn px-4 py-2 rounded-xl bg-green-500 text-white">শুরু</button>
-      <button onclick="stopTimer()" class="btn px-4 py-2 rounded-xl bg-red-500 text-white">বন্ধ</button>
-    </div>
-    <div id="timerDisp" class="text-4xl font-bold grad-text text-center">05:00</div>`;
-  if(id==='stopwatch') return `<h3 class="text-xl font-bold mb-4">⏲️ স্টপওয়াচ</h3>
-    <div id="swDisp" class="text-4xl font-bold grad-text text-center mb-3">00:00.00</div>
-    <div class="flex gap-2 justify-center">
-      <button onclick="swStart()" class="btn px-4 py-2 rounded-xl bg-green-500 text-white">শুরু</button>
-      <button onclick="swStop()" class="btn px-4 py-2 rounded-xl bg-red-500 text-white">বন্ধ</button>
-      <button onclick="swReset()" class="btn px-4 py-2 rounded-xl glass">রিসেট</button>
-    </div>`;
-  if(id==='bmi') return `<h3 class="text-xl font-bold mb-4">⚖️ BMI</h3>
-    <input id="bmiW" type="number" placeholder="ওজন (কেজি)" class="w-full mb-2">
-    <input id="bmiH" type="number" placeholder="উচ্চতা (সেমি)" class="w-full mb-3">
-    <button onclick="bmiCalc()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">হিসাব</button>
-    <div id="bmiRes" class="text-xl font-bold grad-text"></div>`;
-  if(id==='unit') return `<h3 class="text-xl font-bold mb-4">🔄 ইউনিট কনভার্টার</h3>
-    <select id="unitType" class="w-full mb-2"><option value="len">দৈর্ঘ্য (m↔ft)</option><option value="weight">ওজন (kg↔lb)</option><option value="temp">তাপমাত্রা (°C↔°F)</option></select>
-    <input id="unitVal" type="number" placeholder="মান" class="w-full mb-3">
-    <button onclick="unitConv()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">কনভার্ট</button>
-    <div id="unitRes" class="text-xl font-bold grad-text"></div>`;
-  if(id==='password') return `<h3 class="text-xl font-bold mb-4">🔐 পাসওয়ার্ড</h3>
-    <input id="pwLen" type="number" value="16" class="w-full mb-3">
-    <button onclick="genPw()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">জেনারেট</button>
-    <div id="pwRes" class="text-lg font-mono break-all grad-text"></div>`;
-  if(id==='color') return `<h3 class="text-xl font-bold mb-4">🎨 কালার</h3>
-    <input type="color" id="colorPick" value="#6366f1" class="w-full h-12 mb-3 rounded">
-    <div id="colorRes" class="text-lg font-mono grad-text"></div>`;
-  if(id==='qrcode') return `<h3 class="text-xl font-bold mb-4">📱 QR কোড</h3>
-    <input id="qrText" placeholder="টেক্সট/URL" class="w-full mb-3">
-    <button onclick="genQr()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">জেনারেট</button>
-    <div id="qrRes" class="text-center"></div>`;
-  if(id==='notes') return `<h3 class="text-xl font-bold mb-4">🎲 র‍্যান্ডম</h3>
-    <input id="rndMin" type="number" value="1" class="w-full mb-2" placeholder="মিন">
-    <input id="rndMax" type="number" value="100" class="w-full mb-3" placeholder="ম্যাক্স">
-    <button onclick="genRnd()" class="btn px-4 py-2 rounded-xl bg-indigo-500 text-white mb-3">রোল</button>
-    <div id="rndRes" class="text-4xl font-bold grad-text text-center"></div>`;
-  if(id==='pomodoro') return `<h3 class="text-xl font-bold mb-4">🍅 পমোডোরো</h3>
-    <div id="pomoDisp" class="text-4xl font-bold grad-text text-center mb-3">25:00</div>
-    <div class="flex gap-2 justify-center">
-      <button onclick="pomoStart()" class="btn px-4 py-2 rounded-xl bg-red-500 text-white">ফোকাস</button>
-      <button onclick="pomoBreak()" class="btn px-4 py-2 rounded-xl bg-green-500 text-white">ব্রেক</button>
-      <button onclick="pomoStop()" class="btn px-4 py-2 rounded-xl glass">বন্ধ</button>
-    </div>`;
-  return '';
-}
-function showModal(html){
-  const m=document.createElement('div'); m.id='modal'; m.className='fixed inset-0 z-50 flex items-center justify-center modal-backdrop';
-  m.innerHTML=`<div class="glass-strong w-full max-w-md mx-4 p-6 bounce-in">${html}<div class="mt-4 text-right"><button onclick="closeModal()" class="px-4 py-2 rounded-xl glass">বন্ধ</button></div></div>`;
-  m.onclick=(e)=>{ if(e.target===m) closeModal(); };
-  document.body.appendChild(m);
-}
-function closeModal(){ const m=document.getElementById('modal'); if(m) m.remove(); }
-
-// tool funcs
-function calcRun(){ try{ const v=eval(document.getElementById('calcExpr').value.replace(/[^0-9+\-*/().%\s]/g,'')); document.getElementById('calcRes').textContent='= '+v; }catch(e){ document.getElementById('calcRes').textContent='ত্রুটি'; } }
-let timerIv=null,timerSec=300;
-function startTimer(){ if(timerIv) return; timerSec=parseInt(document.getElementById('timerMin').value||5)*60; timerIv=setInterval(()=>{ if(timerSec<=0){ clearInterval(timerIv); timerIv=null; toast('টাইমার শেষ!','success'); return;} timerSec--; const m=Math.floor(timerSec/60),s=timerSec%60; document.getElementById('timerDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); },1000); }
-function stopTimer(){ clearInterval(timerIv); timerIv=null; }
-let swStartT=0, swIv=null, swElapsed=0, swRunning=false;
-function swStart(){ if(swRunning) return; swRunning=true; swStartT=Date.now()-swElapsed; swIv=setInterval(()=>{ swElapsed=Date.now()-swStartT; const m=Math.floor(swElapsed/60000),s=Math.floor((swElapsed%60000)/1000),ms=Math.floor((swElapsed%1000)/10); document.getElementById('swDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+'.'+String(ms).padStart(2,'0'); },50); }
-function swStop(){ swRunning=false; clearInterval(swIv); }
-function swReset(){ swStop(); swElapsed=0; document.getElementById('swDisp').textContent='00:00.00'; }
-function bmiCalc(){ const w=+document.getElementById('bmiW').value, h=+document.getElementById('bmiH').value/100; if(!w||!h){toast('মান দিন','error');return;} const bmi=w/(h*h); let cat=bmi<18.5?'কম ওজন':bmi<25?'স্বাভাবিক':bmi<30?'অতিরিক্ত ওজন':'স্থূল'; document.getElementById('bmiRes').textContent='BMI: '+bmi.toFixed(1)+' — '+cat; }
-function unitConv(){ const v=+document.getElementById('unitVal').value; const t=document.getElementById('unitType').value; let r; if(t==='len') r=v*3.28084+' ft'; else if(t==='weight') r=v*2.20462+' lb'; else r=(v*9/5+32)+' °F'; document.getElementById('unitRes').textContent='= '+r; }
-function genPw(){ const len=+document.getElementById('pwLen').value||16; const c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*'; let p=''; for(let i=0;i<len;i++) p+=c[Math.floor(Math.random()*c.length)]; document.getElementById('pwRes').textContent=p; }
-document.addEventListener('change',e=>{ if(e.target.id==='colorPick'){ document.getElementById('colorRes').textContent=e.target.value+' → RGB: '+hexToRgb(e.target.value); }});
-function hexToRgb(h){ const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `${r}, ${g}, ${b}`; }
-function genQr(){ const t=document.getElementById('qrText').value; if(!t){toast('টেক্সট দিন','error');return;} document.getElementById('qrRes').innerHTML=`<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(t)}" class="mx-auto rounded-lg" alt="QR">`; }
-function genRnd(){ const mn=+document.getElementById('rndMin').value, mx=+document.getElementById('rndMax').value; document.getElementById('rndRes').textContent=Math.floor(Math.random()*(mx-mn+1))+mn; }
-let pomoIv=null,pomoSec=1500;
-function pomoStart(){ clearInterval(pomoIv); pomoSec=1500; pomoIv=setInterval(()=>{ if(pomoSec<=0){ clearInterval(pomoIv); pomoIv=null; toast('ফোকাস শেষ! ব্রেক নিন।','success'); return;} pomoSec--; const m=Math.floor(pomoSec/60),s=pomoSec%60; document.getElementById('pomoDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); },1000); }
-function pomoBreak(){ clearInterval(pomoIv); pomoSec=300; pomoIv=setInterval(()=>{ if(pomoSec<=0){ clearInterval(pomoIv); pomoIv=null; toast('ব্রেক শেষ!','info'); return;} pomoSec--; const m=Math.floor(pomoSec/60),s=pomoSec%60; document.getElementById('pomoDisp').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); },1000); }
-function pomoStop(){ clearInterval(pomoIv); pomoIv=null; pomoSec=1500; document.getElementById('pomoDisp').textContent='25:00'; }
-
-// ============ DASHBOARD ============
-function renderDashboard(){
-  const total=STATE.tasks.length, done=STATE.tasks.filter(t=>t.status==='done').length;
-  const pct=total?Math.round(done/total*100):0;
-  document.getElementById('dashProgress').textContent=pct+'%';
-  document.getElementById('dashProgressFill').style.width=pct+'%';
-  document.getElementById('dashProgressText').textContent=done+' / '+total+' সম্পন্ন';
-  const now=new Date();
-  document.getElementById('dashDate').textContent=now.toLocaleDateString('bn-BD',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  document.getElementById('dashTime').textContent=now.toLocaleTimeString('bn-BD');
-  // cpu/ram fake
-  const cpu=Math.floor(20+Math.random()*40), ram=Math.floor(30+Math.random()*30);
-  document.getElementById('cpuVal').textContent=cpu; document.getElementById('ramVal').textContent=ram;
-  document.getElementById('cpuBar').style.width=cpu+'%';
-  // week chart
-  const wc=document.getElementById('weekChart'); wc.innerHTML='';
-  const days=['শনি','রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র'];
-  for(let i=0;i<7;i++){ const h=20+Math.random()*80; const bar=document.createElement('div'); bar.className='flex-1 flex flex-col items-center gap-1'; bar.innerHTML=`<div class="w-full rounded-t-lg" style="height:${h}%;background:linear-gradient(180deg,#6366f1,#ec4899)"></div><div class="text-xs text-slate-400">${days[i]}</div>`; wc.appendChild(bar); }
-  // cat chart
-  const cc=document.getElementById('catChart'); cc.innerHTML='';
-  const cats=['general','work','personal','study','health']; const catLabels={general:'সাধারণ',work:'কাজ',personal:'ব্যক্তিগত',study:'পড়াশোনা',health:'স্বাস্থ্য'};
-  cats.forEach(c=>{ const n=STATE.tasks.filter(t=>t.category===c).length; const pct2=total?Math.round(n/total*100):0;
-    const row=document.createElement('div'); row.innerHTML=`<div class="flex justify-between text-sm mb-1"><span>${catLabels[c]}</span><span class="text-slate-400">${n}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct2}%"></div></div>`; cc.appendChild(row);
-  });
-  // activity
-  const al=document.getElementById('activityLog'); al.innerHTML='';
-  if(!STATE.activity.length) al.innerHTML='<div class="text-slate-400 text-sm">কোনো কার্যকলাপ নেই।</div>';
-  STATE.activity.slice(0,10).forEach(a=>{ const r=document.createElement('div'); r.className='flex items-center gap-3 text-sm py-1 border-b border-indigo-500/10'; r.innerHTML=`<span class="text-xs text-slate-500">${a.time}</span><span>${escapeHtml(a.text)}</span>`; al.appendChild(r); });
+function exportNotes(){
+  const data=JSON.stringify(notes,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='zyraxon-notes-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  URL.revokeObjectURL(url);
+  toast('নোট রপ্তানি হয়েছে');
 }
 
-// ============ SETTINGS ============
-document.querySelectorAll('.accent-btn').forEach(b=>b.onclick=()=>{ STATE.settings.accent=b.dataset.color; saveState(); toast('কালার পরিবর্তন হয়েছে','success'); });
-document.getElementById('modeSelect')?.addEventListener('change',e=>{ STATE.settings.theme=e.target.value; saveState(); if(e.target.value==='light') document.body.classList.add('light'); else document.body.classList.remove('light'); });
+function importNotes(){
+  $('#fileInput').click();
+}
 
-// ============ DATA ============
-function exportData(){ const blob=new Blob([JSON.stringify(STATE,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='omg-app-data.json'; a.click(); URL.revokeObjectURL(url); toast('এক্সপোর্ট সম্পন্ন','success'); }
-function importData(){ const inp=document.createElement('input'); inp.type='file'; inp.accept='application/json'; inp.onchange=e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{ const d=JSON.parse(r.result); Object.assign(STATE,d); saveState(); renderTasks(); renderNotes(); renderChat(); updateStats(); toast('ইমপোর্ট সম্পন্ন','success'); }catch(err){toast('ত্রুটি','error');} }; r.readAsText(f); }; inp.click(); }
-function clearAllData(){ if(!confirm('সব ডাটা মুছে ফেলবেন?')) return; STATE.tasks=[];STATE.notes=[];STATE.messages=[];STATE.activity=[]; saveState(); renderTasks();renderNotes();renderChat();updateStats(); toast('সব ডাটা মুছে ফেলা হয়েছে','info'); }
+$('#fileInput').addEventListener('change',e=>{
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(!Array.isArray(data)){toast('অবৈধ ফাইল');return}
+      let added=0;
+      data.forEach(n=>{
+        if(n&&n.id&&n.content!==undefined){
+          if(!notes.find(x=>x.id===n.id)){notes.push(n);added++}
+        }
+      });
+      saveNotes();renderList();toast(added+' টি নোট আমদানি হয়েছে');
+    }catch(err){toast('ফাইল পড়তে সমস্যা')}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+});
 
-// ============ UTILS ============
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function toast(msg,type='info'){ const c=document.getElementById('toastContainer'); const t=document.createElement('div'); t.className='toast glass px-4 py-3 rounded-xl text-sm'; const colors={success:'border-green-500/40',error:'border-red-500/40',info:'border-indigo-500/40'}; t.classList.add(colors[type]||colors.info); t.textContent=msg; c.appendChild(t); setTimeout(()=>t.remove(),3000); }
-function updateStats(){ document.getElementById('statTasks').textContent=STATE.tasks.length; document.getElementById('statDone').textContent=STATE.tasks.filter(t=>t.status==='done').length; document.getElementById('statNotes').textContent=STATE.notes.length; document.getElementById('statMsgs').textContent=STATE.messages.length; }
+let confirmCallback=null;
+function confirmAction(title,msg,cb){
+  $('#modalTitle').textContent=title;$('#modalMsg').textContent=msg;
+  confirmCallback=cb;$('#confirmModal').classList.add('open');
+}
+$('#modalCancel').onclick=()=>{$('#confirmModal').classList.remove('open');confirmCallback=null};
+$('#modalConfirm').onclick=()=>{$('#confirmModal').classList.remove('open');if(confirmCallback)confirmCallback();confirmCallback=null};
 
-// ============ INIT ============
-loadState();
-updateStats();
-setInterval(()=>{ const el=document.getElementById('dashTime'); if(el) el.textContent=new Date().toLocaleTimeString('bn-BD'); },1000);
-// welcome
-if(!STATE.messages.length){ STATE.messages.push({role:'ai',text:'স্বাগতম OMG App-এ! আমি আপনার AI সহকারী। কিছু জিজ্ঞাসা করুন।',time:Date.now()}); saveState(); }
-renderChat();
+// Event listeners
+$('#newNoteBtn').onclick=createNote;
+$('#fabBtn').onclick=createNote;
+$('#exportBtn').onclick=exportNotes;
+$('#importBtn').onclick=importNotes;
+$('#searchInput').addEventListener('input',()=>renderList());
+$$('.tool-btn[data-cmd]').forEach(b=>b.addEventListener('click',()=>execCmd(b.dataset.cmd)));
+$('#colorPicker').addEventListener('change',updateActive);
+$('#pinBtn').onclick=()=>{if(activeId)togglePin()};
+$('#deleteBtn').onclick=()=>{
+  if(!activeId)return;
+  confirmAction('নোট মুছুন','এই নোটটি স্থায়ীভাবে মুছে ফেলবেন?',()=>deleteNote(activeId));
+};
+$('#titleInput').addEventListener('input',debounce(updateActive,400));
+$('#editor').addEventListener('input',debounce(updateActive,600));
+$('#editor').addEventListener('paste',e=>{
+  // keep formatting but strip dangerous
+  setTimeout(updateActive,100);
+});
+$('#backBtn').onclick=()=>{$('#sidebar').classList.add('open');$('#overlay').classList.add('open')};
+$('#overlay').onclick=()=>{$('#sidebar').classList.remove('open');$('#overlay').classList.remove('open')};
+
+function debounce(fn,delay){let t;return function(){clearTimeout(t);t=setTimeout(()=>fn.apply(this,arguments),delay)}}
+
+// Keyboard shortcuts
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='n'){e.preventDefault();createNote()}
+  if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();updateActive();toast('সংরক্ষিত')}
+  if((e.ctrlKey||e.metaKey)&&e.key==='f'){e.preventDefault();$('#searchInput').focus()}
+  if(e.key==='Escape'){$('#confirmModal').classList.remove('open')}
+});
+
+// Init
+loadNotes();
+if(notes.length===0){createNote()}else{activeId=notes[0].id;openNote(activeId)}
+renderList();
+updateStatus();
+
+// Auto-save on visibility change
+document.addEventListener('visibilitychange',()=>{if(document.hidden)updateActive()});
+window.addEventListener('beforeunload',updateActive);
 </script>
 </body>
 </html>
