@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoSphere — পরিবেশ ইকোসিস্টেম প্ল্যাটফর্ম</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Hind Siliguri', 'Inter', sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+    .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,.3); }
+    .leaf-float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+    .glow { box-shadow: 0 0 60px rgba(34,197,94,.4); }
+  </style>
+</head>
+<body class="bg-slate-950 text-white">
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur border-b border-emerald-500/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl">🌿</span>
+        <span class="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">EcoSphere</span>
+      </div>
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#features" class="hover:text-emerald-400 transition">ফিচার</a>
+        <a href="#ecosystem" class="hover:text-emerald-400 transition">ইকোসিস্টেম</a>
+        <a href="#stats" class="hover:text-emerald-400 transition">পরিসংখ্যান</a>
+        <a href="#contact" class="hover:text-emerald-400 transition">যোগাযোগ</a>
+      </div>
+      <button class="px-5 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 font-semibold text-sm transition">শুরু করুন</button>
+    </div>
+  </nav>
+  <section class="hero-bg min-h-screen flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-block px-4 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-sm font-medium mb-6">🌱 টেকসই ভবিষ্যৎ</span>
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+          প্রকৃতির সাথে <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">সামঞ্জস্যপূর্ণ</span> জীবনযাত্রা
+        </h1>
+        <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+          EcoSphere একটি সম্পূর্ণ ইকোসিস্টেম প্ল্যাটফর্ম — পরিবেশ, প্রযুক্তি ও মানুষের সমন্বয়ে একটি সবুজ, স্মার্ট ও টেকসই ভবিষ্যৎ গড়ে তুলুন।
+        </p>
+        <div class="flex gap-4 flex-wrap">
+          <button class="px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-600 font-bold text-lg transition glow">এক্সপ্লোর করুন →</button>
+          <button class="px-8 py-4 rounded-full border border-emerald-500/50 hover:bg-emerald-500/10 font-bold text-lg transition">ভিডিও দেখুন ▶</button>
+        </div>
+      </div>
+      <div class="relative hidden md:block">
+        <img src="https://image.pollinations.ai/prompt/lush%20green%20ecosystem%20forest%20with%20smart%20city%20technology%20floating%20leaves%20digital%20nature%20harmony?width=600&height=600&nologo=true" alt="Ecosystem" class="rounded-3xl leaf-float shadow-2xl" />
+      </div>
+    </div>
+  </section>
+  <section id="features" class="py-24 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">আমাদের <span class="text-emerald-400">ফিচারসমূহ</span></h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">পরিবেশ সংরক্ষণ থেকে শুরু করে স্মার্ট কৃষি — সবকিছু এক প্ল্যাটফর্মে।</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">🌍</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">কার্বন ট্র্যাকিং</h3>
+          <p class="text-slate-300">আপনার দৈনন্দিন কার্বন ফুটপ্রিন্ট ট্র্যাক করুন এবং কমিয়ে আনার উপায় জানুন।</p>
+        </div>
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">🌾</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">স্মার্ট কৃষি</h3>
+          <p class="text-slate-300">IoT সেন্সর ও AI-এর মাধ্যমে ফসলের উৎপাদন বাড়ান ও সম্পদ সাশ্রয় করুন।</p>
+        </div>
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">💧</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">জল ব্যবস্থাপনা</h3>
+          <p class="text-slate-300">বৃষ্টির পানি সংগ্রহ ও পুনর্ব্যবহারের স্মার্ট সিস্টেম।</p>
+        </div>
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">☀️</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">সৌর শক্তি</h3>
+          <p class="text-slate-300">সৌর প্যানেল ইনস্টলেশন ও মনিটরিং ড্যাশবোর্ড।</p>
+        </div>
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">♻️</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">বর্জ্য ব্যবস্থাপনা</h3>
+          <p class="text-slate-300">রিসাইক্লিং ও কম্পোস্টিং ট্র্যাকার এবং গাইড।</p>
+        </div>
+        <div class="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-8 card-hover">
+          <div class="text-5xl mb-4">🌳</div>
+          <h3 class="text-2xl font-bold mb-3 text-emerald-400">বৃক্ষরোপণ</h3>
+          <p class="text-slate-300">গাছ লাগানোর ইভেন্ট ও কার্বন অফসেট প্রোগ্রাম।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="ecosystem" class="py-24 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">আমাদের <span class="text-emerald-400">ইকোসিস্টেম</span></h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">প্রকৃতি, প্রযুক্তি ও মানুষ — একসাথে কাজ করে।</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center p-6">
+          <div class="w-20 h-20 mx-auto rounded-full bg-emerald-500/20 flex items-center justify-center text-4xl mb-4">🌿</div>
+          <h4 class="font-bold text-lg mb-2">প্রকৃতি</h4>
+          <p class="text-slate-400 text-sm">বন, নদী, মাটি ও বায়ুর সুরক্ষা</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-20 h-20 mx-auto rounded-full bg-cyan-500/20 flex items-center justify-center text-4xl mb-4">🤖</div>
+          <h4 class="font-bold text-lg mb-2">প্রযুক্তি</h4>
+          <p class="text-slate-400 text-sm">AI, IoT ও ডেটা অ্যানালিটিক্স</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-20 h-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center text-4xl mb-4">👥</div>
+          <h4 class="font-bold text-lg mb-2">সম্প্রদায়</h4>
+          <p class="text-slate-400 text-sm">মানুষের অংশগ্রহণ ও সচেতনতা</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-20 h-20 mx-auto rounded-full bg-rose-500/20 flex items-center justify-center text-4xl mb-4">💰</div>
+          <h4 class="font-bold text-lg mb-2">অর্থনীতি</h4>
+          <p class="text-slate-400 text-sm">সবুজ বিনিয়োগ ও কার্বন ক্রেডিট</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="stats" class="py-24 bg-gradient-to-br from-emerald-900 to-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-5xl font-extrabold text-emerald-400 mb-2">50K+</div>
+          <p class="text-slate-300">সক্রিয় ব্যবহারকারী</p>
+        </div>
+        <div>
+          <div class="text-5xl font-extrabold text-emerald-400 mb-2">1.2M</div>
+          <p class="text-slate-300">গাছ লাগানো হয়েছে</p>
+        </div>
+        <div>
+          <div class="text-5xl font-extrabold text-emerald-400 mb-2">850T</div>
+          <p class="text-slate-300">CO₂ কমেছে (টন)</p>
+        </div>
+        <div>
+          <div class="text-5xl font-extrabold text-emerald-400 mb-2">320+</div>
+          <p class="text-slate-300">সহযোগী প্রতিষ্ঠান</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="py-24 bg-slate-950">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">আমাদের সাথে <span class="text-emerald-400">যোগাযোগ</span> করুন</h2>
+      <p class="text-slate-400 mb-8">EcoSphere ইকোসিস্টেমে যোগ দিতে আজই যোগাযোগ করুন।</p>
+      <form class="space-y-4">
+        <input type="text" placeholder="আপনার নাম" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-emerald-500/30 focus:border-emerald-500 outline-none" />
+        <input type="email" placeholder="ইমেইল" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-emerald-500/30 focus:border-emerald-500 outline-none" />
+        <textarea placeholder="বার্তা" rows="4" class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-emerald-500/30 focus:border-emerald-500 outline-none"></textarea>
+        <button type="submit" class="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 font-bold text-lg transition">পাঠান →</button>
+      </form>
+    </div>
+  </section>
+  <footer class="border-t border-emerald-500/20 py-8 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
+      © 2025 EcoSphere — প্রকৃতির সাথে সামঞ্জস্যপূর্ণ জীবনযাত্রা 🌿
+    </div>
+  </footer>
+</body>
+</html>
