@@ -1,9 +1,9 @@
 {
-  "name": "omg-app",
-  "productName": "OMG App",
+  "name": "note-app",
+  "productName": "note-app",
   "version": "1.0.0",
   "main": "main.js",
-  "description": "OMG App — built by ZYRAXON-Pro",
+  "description": "note-app — built by ZYRAXON-Pro",
   "author": {
     "name": "ZYRAXON-Pro",
     "email": "onlypowerai@zyraxon.lab"
