@@ -1,9 +1,9 @@
 {
-  "name": "apk-test",
-  "productName": "apk-test",
+  "name": "example",
+  "productName": "example",
   "version": "1.0.0",
   "main": "main.js",
-  "description": "apk-test — built by ZYRAXON-Pro",
+  "description": "example — built by ZYRAXON-Pro",
   "author": {
     "name": "ZYRAXON-Pro",
     "email": "onlypowerai@zyraxon.lab"
