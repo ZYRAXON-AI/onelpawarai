@@ -1,6 +1,6 @@
 {
-  "appId": "com.zyraxon.apktest",
-  "productName": "apk-test",
+  "appId": "com.zyraxon.example",
+  "productName": "example",
   "directories": {
     "output": "dist",
     "app": "."
@@ -21,5 +21,13 @@
       "dmg"
     ],
     "identity": null
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ],
+    "category": "Utility",
+    "maintainer": "ZYRAXON-Pro <onlypowerai@zyraxon.lab>"
   }
 }
